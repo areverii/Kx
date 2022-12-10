@@ -1,0 +1,11 @@
+cc_library(
+    name = "Kremonte-Events",
+    hdrs = [
+            "ApplicationEvent.h",
+            "Event.h",
+            "KeyEvent.h",
+            "MouseEvent.h"
+    ],
+    visibility = ["//visibility:public"],
+)
+exports_files(["Event.h", "ApplicationEvent.h", "KeyEvent.h", "MouseEvent.h"])

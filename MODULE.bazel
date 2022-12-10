@@ -1,0 +1,6 @@
+module(
+    name = "Kremonte",
+    version = "0.1",
+)
+
+bazel_dep(name = "spdlog", version = "1.10.0")

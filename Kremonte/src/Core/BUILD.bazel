@@ -1,0 +1,40 @@
+cc_library(
+    name = "Kremonte-Core",
+    srcs = [
+            "Application.cpp",
+            "Base.cpp",
+            "Layer.cpp",
+            "LayerStack.cpp",
+            "Log.cpp"
+    ],
+    hdrs = [
+            "Application.h",
+            "Assert.h",
+            "Base.h",
+            "EntryPoint.h",
+            "Input.h",
+            "KeyCodes.h",
+            "Layer.h",
+            "LayerStack.h",
+            "Log.h",
+            "MouseCodes.h",
+            "Window.h",
+            "//Kremonte/src/Events:Event.h",
+            "//Kremonte/src/Events:ApplicationEvent.h",
+            "//Kremonte:krpch.h"
+    ],
+    deps = ["@spdlog//:spdlog"],
+    visibility = ["//visibility:public"],
+)
+
+exports_files([
+               "Application.h",
+               "Input.h",
+               "Log.h",
+               "Base.h",
+               "Assert.h",
+               "KeyCodes.h",
+               "Window.h",
+               "Layer.h",
+               "LayerStack.h",
+])

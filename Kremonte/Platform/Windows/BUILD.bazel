@@ -1,0 +1,33 @@
+#
+load("@rules_cc//cc:defs.bzl", "cc_binary")
+
+cc_library(
+    name = "Kremonte-Platform-Windows",
+    srcs = [
+            "WindowsWindow.cpp",
+            "WindowsInput.cpp"
+    ],
+    hdrs = [
+            "WindowsWindow.h",
+            "//Kremonte/src/Core:Application.h",
+            "//Kremonte/src/Core:Input.h",
+            "//Kremonte/src/Core:Log.h",
+            "//Kremonte/src/Core:Base.h",
+            "//Kremonte/src/Core:Assert.h",
+            "//Kremonte/src/Core:KeyCodes.h",
+            "//Kremonte/src/Core:Window.h",
+            "//Kremonte/src/Core:LayerStack.h",
+            "//Kremonte/src/Core:Layer.h",
+            "//Kremonte/src/Events:ApplicationEvent.h",
+            "//Kremonte/src/Events:Event.h",
+            "//Kremonte/src/Events:KeyEvent.h",
+            "//Kremonte/src/Events:MouseEvent.h",
+            "//Kremonte:krpch.h"
+    ],
+    deps = [
+           "@spdlog//:spdlog",
+           "@glfw//:glfw",
+           #"//library/glfw"
+    ],
+    visibility = ["//visibility:public"],
+)

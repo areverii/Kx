@@ -1,0 +1,17 @@
+cc_library(
+    name = "Kremonte",
+    hdrs = [
+            "Kremonte.h",
+            "krpch.cpp",
+            "krpch.h"
+    ],
+    deps = [
+            "//Kremonte/src/Core:Kremonte-Core",
+            "//Kremonte/src/Events:Kremonte-Events",
+            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows"
+            #"//library/glfw"
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files(["Kremonte.h", "krpch.h"])

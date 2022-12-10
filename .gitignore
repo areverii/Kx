@@ -1,32 +1,12 @@
-# Prerequisites
-*.d
+# Directories
+.vs/
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# Bazel
+bazel-bin/
+bazel-kremonte_engine/
+bazel-out/
+bazel-testlogs/
+log.txt
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-*.smod
-
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# Files
+*.user

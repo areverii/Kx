@@ -1,0 +1,56 @@
+# WORKSPACE
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
+
+# Load Vulkan
+load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+
+git_repository(
+    name = "rules_vulkan",
+    remote = "https://github.com/jadarve/rules_vulkan.git",
+    tag = "v0.0.9"
+)
+
+load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
+
+vulkan_repositories()
+
+# Load GLM
+GLM_VERSION = "0.9.9.8"
+
+http_archive(
+    name = "glm",
+    build_file = "@//third_party/glm:glm.BUILD",
+    sha256 = "4605259c22feadf35388c027f07b345ad3aa3b12631a5a316347f7566c6f1839",
+    strip_prefix = "glm-{}".format(GLM_VERSION),
+    urls = ["https://github.com/g-truc/glm/archive/{}.zip".format(GLM_VERSION)],
+)
+
+
+## Load GLFW
+
+new_git_repository(
+    name = "glfw",
+    remote = "https://github.com/glfw/glfw.git",
+    commit = "7482de6071d21db77a7236155da44c172a7f6c9e",
+    build_file = "@//third_party/glfw:glfw.BUILD",
+)
+
+
+
+
+
+
+
+## OLD
+# Load GLFW
+#GLFW_VERSION = "3.3.8"
+
+#http_archive(
+#    name = "glfw",
+#    build_file = "@//third_party/glfw:glfw.BUILD",
+#    sha256 = "8106e1a432305a8780b986c24922380df6a009a96b2ca590392cb0859062c8ff",
+#    strip_prefix = "glfw-{}".format(GLFW_VERSION),
+#    urls = ["https://github.com/glfw/glfw/archive/{}.zip".format(GLFW_VERSION)],
+#)

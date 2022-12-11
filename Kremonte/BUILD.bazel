@@ -8,8 +8,9 @@ cc_library(
     deps = [
             "//Kremonte/src/Core:Kremonte-Core",
             "//Kremonte/src/Events:Kremonte-Events",
-            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows"
+            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
             #"//library/glfw"
+            "@rules_vulkan//vulkan:vulkan_cc_library",
     ],
     visibility = ["//visibility:public"],
 )

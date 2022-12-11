@@ -79,7 +79,6 @@ def _impl(ctx):
            "C:/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0/include-fixed",
            "C:/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0/include",
            "C:/mingw64/lib/gcc/x86_64-w64-mingw32/12.2.0",
-           "C:/mingw64/x86_64-w64-mingw32/lib", #temp
        ],
        toolchain_identifier = "local",
        host_system_name = "local",

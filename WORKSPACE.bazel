@@ -30,27 +30,20 @@ http_archive(
 
 ## Load GLFW
 
-new_git_repository(
-    name = "glfw",
-    remote = "https://github.com/glfw/glfw.git",
-    commit = "7482de6071d21db77a7236155da44c172a7f6c9e",
-    build_file = "@//third_party/glfw:glfw.BUILD",
-)
-
-
-
-
-
-
-
-## OLD
-# Load GLFW
-#GLFW_VERSION = "3.3.8"
-
-#http_archive(
+#new_git_repository(
 #    name = "glfw",
+#    remote = "https://github.com/glfw/glfw.git",
+#    commit = "7482de6071d21db77a7236155da44c172a7f6c9e",
 #    build_file = "@//third_party/glfw:glfw.BUILD",
-#    sha256 = "8106e1a432305a8780b986c24922380df6a009a96b2ca590392cb0859062c8ff",
-#    strip_prefix = "glfw-{}".format(GLFW_VERSION),
-#    urls = ["https://github.com/glfw/glfw/archive/{}.zip".format(GLFW_VERSION)],
 #)
+
+# Load GLFW
+GLFW_VERSION = "3.3.8"
+
+http_archive(
+    name = "glfw",
+    build_file = "@//third_party/glfw:glfw.BUILD",
+    sha256 = "8106e1a432305a8780b986c24922380df6a009a96b2ca590392cb0859062c8ff",
+    strip_prefix = "glfw-{}".format(GLFW_VERSION),
+    urls = ["https://github.com/glfw/glfw/archive/{}.zip".format(GLFW_VERSION)],
+)

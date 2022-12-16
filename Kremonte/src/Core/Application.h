@@ -36,6 +36,7 @@ namespace Kremonte {
 		
 	private:
 		bool OnWindowClose(WindowCloseEvent& e);
+
 	private:
 		std::unique_ptr<Window> m_Window;
 		ApplicationSpec m_Spec;

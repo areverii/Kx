@@ -11,6 +11,8 @@
 #include "Kremonte/src/Events/KeyEvent.h"
 #include "Kremonte/src/Events/MouseEvent.h"
 
+#include "Kremonte/src/KRASKA/KRASKAmachine.h"
+
 // ---Entry Point---------------------
 #include "Kremonte/src/Core/EntryPoint.h"
 // -----------------------------------

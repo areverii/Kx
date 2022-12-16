@@ -1,0 +1,19 @@
+cc_library(
+    name = "KRASKA",
+    srcs = [
+            
+    ],
+    hdrs = [
+            "CMYK.h",
+            "KRASKAmachine.h",
+            "//Kremonte:krpch.h",
+            "//Kremonte/src/Core:Log.h",
+            "//Kremonte/src/Core:Base.h",
+            "//Kremonte/src/Core:Assert.h",
+    ],
+    deps = [
+            "@spdlog//:spdlog",
+    ],
+    visibility = ["//visibility:public"],
+)
+exports_files(["CMYK.h", "KRASKAmachine.h"])

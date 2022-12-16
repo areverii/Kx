@@ -9,8 +9,10 @@ cc_library(
             "//Kremonte/src/Core:Kremonte-Core",
             "//Kremonte/src/Events:Kremonte-Events",
             "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
-            #"//library/glfw"
-            "@rules_vulkan//vulkan:vulkan_cc_library",
+            "//Kremonte/src/KRASKA:KRASKA",
+            "//third_party/glfw",
+            #"@rules_vulkan//vulkan:vulkan_cc_library",
+            "@spdlog//:spdlog",
     ],
     visibility = ["//visibility:public"],
 )

@@ -1,6 +1,5 @@
 #include "Kremonte/krpch.h"
 #include "Kremonte/src/Core/Application.h"
-
 #include "Kremonte/src/Core/Log.h"
 
 #include <Windows.h>

@@ -22,10 +22,14 @@ public:
 class SandboxApp : public Kremonte::Application {
 
 public:
+	/* MAIN SANDBOX APP*/
 	SandboxApp(const Kremonte::ApplicationSpec& spec)
 		: Application(spec) {
 
 		//PushLayer(new ExampleLayer());
+		KR_INFO("Hello KREMONTE");
+		Kremonte::KRASKAmachine krmachine;
+		krmachine.testCMYK();
 	}
 
 	//virtual void OnInit() override {

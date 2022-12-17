@@ -1,5 +1,12 @@
 # Kremonte_Engine
 
+To build and run Kremonte on Windows in Debug mode, run KremonteEngine.bat.
+
+
+
+
+
+
 Manual build all:
 bazel build //...
 

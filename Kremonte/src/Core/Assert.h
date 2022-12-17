@@ -1,6 +1,6 @@
 #pragma once
 
-#ifdef KR_DEBUG
+#ifdef _KR_DEBUG
 #define KR_ENABLE_ASSERTS
 #endif
 

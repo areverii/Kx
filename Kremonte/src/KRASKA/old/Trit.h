@@ -4,18 +4,28 @@
 //#include "Kremonte/src/Core/Log.h"
 
 //#include <stdlib.h>
+#include "libter27/libter27.h"
 #include <iostream>
+
+
+/*
+		░ = C = 176 = \xb2 = [===] = -
+		▒ = M = 177 = \xb1 = [///] = 0
+		▓ = Y = 178 = \xb0 = [|||] = +
+*/
 
 namespace Kremonte {
 
 	class Trit {
 
+
+	};
+
+#ifdef disabled
+	class Trit {
+
 	public:
-		/*
-		░ = C = 176 = \xb2 = [===] = -
-		▒ = M = 177 = \xb1 = [///] = 0
-		▓ = Y = 178 = \xb0 = [|||] = +
-		*/
+		
 		static const Trit C, M, Y;
 
 		Trit operator!() const {
@@ -56,5 +66,5 @@ namespace Kremonte {
 		ostr << t.chr();
 		return ostr;
 	}
-
+#endif
 }

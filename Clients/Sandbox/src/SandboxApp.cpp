@@ -28,8 +28,10 @@ public:
 
 		//PushLayer(new ExampleLayer());
 		KR_INFO("Hello KREMONTE");
-		Kremonte::KRASKAmachine krmachine;
-		krmachine.testCMYK();
+		//Kremonte::KRASKAmachine krmachine;
+		//krmachine.testCMYK();
+		Kremonte::Puppet puppet;
+		puppet.testCMYK();
 	}
 
 	//virtual void OnInit() override {

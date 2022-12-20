@@ -4,10 +4,8 @@ cc_library(
             
     ],
     hdrs = [
-            "CMYK.h",
-            "Trit.h",
-            "Tryte.h",
-            "KRASKAmachine.h",
+            "KMachine.h",
+            "Puppet.h",
             "//Kremonte:krpch.h",
             "//Kremonte/src/Core:Log.h",
             "//Kremonte/src/Core:Base.h",
@@ -18,4 +16,4 @@ cc_library(
     ],
     visibility = ["//visibility:public"],
 )
-exports_files(["KRASKAmachine.h"])
+exports_files(["Puppet.h", "KMachine.h"])

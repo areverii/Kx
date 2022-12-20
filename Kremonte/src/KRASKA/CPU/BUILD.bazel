@@ -1,0 +1,19 @@
+cc_library(
+    name = "KRASKA-CPU",
+    hdrs = [
+            "CPU.h",
+            "Register.h",
+            "//Kremonte/src/KRASKA:KMachine.h",
+            "//Kremonte:krpch.h",
+    ],
+    srcs = [
+            "CPU.cpp",
+            "Register.cpp",
+    ],
+    deps = [
+            "@spdlog//:spdlog",
+            "//Kremonte/src/KRASKA/libter27:libter27",
+            "//Kremonte/src/Core:Kremonte-Core",
+    ],
+    visibility = ["//visibility:public"],       
+)

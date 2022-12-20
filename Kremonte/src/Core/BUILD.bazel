@@ -19,11 +19,12 @@ cc_library(
             "Log.h",
             "MouseCodes.h",
             "Window.h",
-            "//Kremonte/src/Events:Event.h",
-            "//Kremonte/src/Events:ApplicationEvent.h",
             "//Kremonte:krpch.h"
     ],
-    deps = ["@spdlog//:spdlog"],
+    deps = [
+            "@spdlog//:spdlog",
+            "//Kremonte/src/Events:Kremonte-Events",
+    ],
     visibility = ["//visibility:public"],
 )
 

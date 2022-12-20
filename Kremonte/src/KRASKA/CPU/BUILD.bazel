@@ -12,8 +12,9 @@ cc_library(
     ],
     deps = [
             "@spdlog//:spdlog",
-            "//Kremonte/src/KRASKA/libter27:libter27",
+            "//third_party/libter27:libter27",
             "//Kremonte/src/Core:Kremonte-Core",
+            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
     ],
     visibility = ["//visibility:public"],       
 )

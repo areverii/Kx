@@ -1,18 +1,17 @@
 cc_library(
     name = "KRASKA",
     srcs = [
-            
+            "KMachine.cpp",
     ],
     hdrs = [
             "KMachine.h",
             "Puppet.h",
             "//Kremonte:krpch.h",
-            "//Kremonte/src/Core:Log.h",
-            "//Kremonte/src/Core:Base.h",
-            "//Kremonte/src/Core:Assert.h",
     ],
     deps = [
             "@spdlog//:spdlog",
+            "//Kremonte/src/KRASKA/CPU:KRASKA-CPU",
+            "//Kremonte/src/KRASKA/Weavinglimb:KRASKA-Weavinglimb",
     ],
     visibility = ["//visibility:public"],
 )

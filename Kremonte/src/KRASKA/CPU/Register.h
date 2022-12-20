@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kremonte/src/KRASKA/libter27/libter9.h"
+#include "third_party/libter27/libter9.h"
 
 namespace Kremonte {
 

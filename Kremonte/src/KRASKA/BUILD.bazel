@@ -1,18 +1,19 @@
 cc_library(
     name = "KRASKA",
     srcs = [
-            "KMachine.cpp",
+
     ],
     hdrs = [
-            "KMachine.h",
-            "Puppet.h",
             "//Kremonte:krpch.h",
     ],
     deps = [
             "@spdlog//:spdlog",
-            "//Kremonte/src/KRASKA/CPU:KRASKA-CPU",
-            "//Kremonte/src/KRASKA/Weavinglimb:KRASKA-Weavinglimb",
+            "//Kremonte/src/KRASKA/KRASKAboy/Base:KRASKAboy-Base",
+            "//Kremonte/src/KRASKA/KRASKAboy/Cartridge:KRASKAboy-Cartridge",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:KRASKAboy-CPU",
+            "//Kremonte/src/KRASKA/KRASKAboy/Util:KRASKAboy-Util",
+            "//Kremonte/src/KRASKA/KRASKAboy/Video:KRASKAboy-Video",
+            "//Kremonte/src/KRASKA/Puppet:KRASKA-Puppet",
     ],
     visibility = ["//visibility:public"],
 )
-exports_files(["Puppet.h", "KMachine.h"])

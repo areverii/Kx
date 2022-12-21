@@ -1,0 +1,27 @@
+cc_library(
+    name = "KRASKAboy-Util",
+    hdrs = [
+            "bitwise.h",
+            "KRboy_Files.h",
+            "KRboy_Log.h",
+            "KRboy_String_Utils.h",
+            "//Kremonte:krpch.h",
+    ],
+    srcs = [
+            "KRboy_Files.cpp",
+            "KRboy_Log.cpp",
+            "KRboy_String_Utils.cpp",
+    ],
+    deps = [
+            "@spdlog//:spdlog",
+            "//third_party/libter27:libter27",
+            "//Kremonte/src/Core:Kremonte-Core",
+            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
+            "//Kremonte/src/KRASKA/KRASKAboy/Base:KRASKAboy-Base",
+            #"//Kremonte/src/KRASKA/KRASKAboy/Cartridge:KRASKAboy-Cartridge",
+            #"//Kremonte/src/KRASKA/KRASKAboy/CPU:KRASKAboy-CPU",
+            #"//Kremonte/src/KRASKA/KRASKAboy/Video:KRASKAboy-Video",
+    ],
+    visibility = ["//visibility:public"],       
+)
+exports_files(["bitwise.h", "KRboy_Files.h", "KRboy_Log.h", "KRboy_String_Utils.h"])

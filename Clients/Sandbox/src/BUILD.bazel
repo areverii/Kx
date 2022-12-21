@@ -1,6 +1,8 @@
 cc_binary(
     name = "Sandbox",
-    srcs = ["SandboxApp.cpp"],
+    srcs = [
+            "SandboxApp.cpp"
+    ],
     deps = [
             "//Kremonte:Kremonte",
     ],

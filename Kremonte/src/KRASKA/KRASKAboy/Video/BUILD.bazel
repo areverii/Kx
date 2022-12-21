@@ -1,0 +1,33 @@
+cc_library(
+    name = "KRASKAboy-Video",
+    hdrs = [
+            "Color.h",
+            "Framebuffer.h",
+            "Tile.h",
+            "Video.h",
+            "//Kremonte:krpch.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:Address.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:Register.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:MMU.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/Cartridge:Cartridge.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/Cartridge:Cartridge_Info.h",
+    ],
+    srcs = [
+            "Color.cpp",
+            "Framebuffer.cpp",
+            "Tile.cpp",
+            "Video.cpp",
+    ],
+    deps = [
+            "@spdlog//:spdlog",
+            "//third_party/libter27:libter27",
+            "//Kremonte/src/Core:Kremonte-Core",
+            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
+            "//Kremonte/src/KRASKA/KRASKAboy/Base:KRASKAboy-Base",
+            "//Kremonte/src/KRASKA/KRASKAboy/Util:KRASKAboy-Util",
+            #"//Kremonte/src/KRASKA/KRASKAboy/Cartridge:KRASKAboy-Cartridge",
+            #"//Kremonte/src/KRASKA/KRASKAboy/CPU:KRASKAboy-CPU",
+    ],
+    visibility = ["//visibility:public"],       
+)
+exports_files(["Video.h", "Framebuffer.h", "Tile.h"])

@@ -30,8 +30,8 @@ public:
 		KR_INFO("Hello KREMONTE");
 		//Kremonte::KRASKAmachine krmachine;
 		//krmachine.testCMYK();
-		Kremonte::Puppet puppet;
-		puppet.testCMYK();
+		//Kremonte::Puppet puppet;
+		//puppet.testCMYK();
 	}
 
 	//virtual void OnInit() override {

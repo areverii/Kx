@@ -1,0 +1,19 @@
+cc_library(
+    name = "KRASKA-Puppet-Weavinglimb",
+    hdrs = [
+            "Heartdrive.h",
+            "Weavinglimb.h",
+            "Heartridge.h",
+            "//Kremonte:krpch.h",
+    ],
+    srcs = [
+            "Heartdrive.cpp",
+            "Heartridge.cpp",
+    ],
+    deps = [
+            "@spdlog//:spdlog",
+            "//Kremonte/src/Core:Kremonte-Core",
+            "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
+    ],
+    visibility = ["//visibility:public"],       
+)

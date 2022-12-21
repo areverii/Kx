@@ -1,0 +1,16 @@
+cc_library(
+    name = "KRASKA-Puppet",
+    srcs = [
+            "Puppet.cpp",
+    ],
+    hdrs = [
+            "Puppet.h",
+            "//Kremonte:krpch.h",
+    ],
+    deps = [
+            "@spdlog//:spdlog",
+            "//Kremonte/src/KRASKA/Puppet/Weavinglimb:KRASKA-Puppet-Weavinglimb",
+    ],
+    visibility = ["//visibility:public"],
+)
+exports_files(["Puppet.h"])

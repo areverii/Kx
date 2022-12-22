@@ -2,8 +2,40 @@
 
 namespace Kremonte {
 
-	Puppet::Puppet() {
+	Puppet::Puppet()
+		: _heartridge(nullptr)//, _kraskaboy(KRASKA::KRASKAboy(std::vector<u8>, KRASKA::Options))
+	{
+		const std::vector<u8> empty_ROM;
+		KRASKA::Options empty_options;
+		_kraskaboy = std::make_unique<KRASKA::KRASKAboy>(empty_ROM, empty_options);
+		//_kraskaboy = make_unique<KRASKA::KRASKAboy>()
+	}
 
+	void Puppet::loadHeartridge(int argc, char* kb_args[]) {
+		if (pstate != STANDBY) {
+			// error
+			return;
+		}
+		//_heartridge.reset();
+		_heartridge = std::make_unique<KRASKA::Heartridge>(KRASKA::Heartridge(KRASKA::constructOptions(argc, kb_args)));
+		//_heartridge.setOptions(KRASKA::constructOptions(argc, kb_args));
+		auto rom_data = KRASKA::read_bytes(_heartridge->getOptions()._filename);
+		_heartridge->setROM(rom_data);
+		pstate = LOADED; 
+	}
+
+	//TODO: Load new rom function
+
+	void Puppet::run() {
+		//_kraskaboy.reset();
+		if (_heartridge == nullptr) {
+			//error
+			return;
+		}
+		//_kraskaboy.reset();
+		_kraskaboy = std::make_unique<KRASKA::KRASKAboy>(_heartridge->loadROM(), _heartridge->getOptions()._options);
+		//_kraskaboy = std::make_unique<KRASKA::KRASKAboy>(KRASKA::KRASKAboy(_heartridge->loadROM(), _heartridge->getOptions()._options));
+		_kraskaboy->run(&is_closed, &draw);
 	}
 
 	void Puppet::testCMYK() {

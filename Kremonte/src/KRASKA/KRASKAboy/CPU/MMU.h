@@ -7,34 +7,37 @@
 #include <vector>
 #include <memory>
 
-class KRASKAboy;
+namespace KRASKA {
 
-class MMU {
-public:
-    MMU(KRASKAboy& inGb, Options& options);
+    class KRASKAboy;
 
-    auto read(const Address& address) const -> u8;
-    void write(const Address& address, u8 byte);
+    class MMU {
+    public:
+        MMU(KRASKAboy& inGb, Options& options);
 
-private:
-    auto boot_rom_active() const -> bool;
+        auto read(const Address& address) const->u8;
+        void write(const Address& address, u8 byte);
 
-    auto read_io(const Address& address) const -> u8;
-    void write_io(const Address& address, u8 byte);
+    private:
+        auto boot_rom_active() const -> bool;
 
-    auto unmapped_io_read(const Address& address) const -> u8;
-    void unmapped_io_write(const Address& address, u8 byte);
+        auto read_io(const Address& address) const->u8;
+        void write_io(const Address& address, u8 byte);
 
-    void dma_transfer(u8 byte);
+        auto unmapped_io_read(const Address& address) const->u8;
+        void unmapped_io_write(const Address& address, u8 byte);
 
-    KRASKAboy& gb;
-    Options& options;
+        void dma_transfer(u8 byte);
 
-    std::vector<u8> work_ram;
-    std::vector<u8> oam_ram;
-    std::vector<u8> high_ram;
+        KRASKAboy& gb;
+        Options& options;
 
-    ByteRegister disable_boot_rom_switch;
+        std::vector<u8> work_ram;
+        std::vector<u8> oam_ram;
+        std::vector<u8> high_ram;
 
-    friend class Debugger;
-};
+        ByteRegister disable_boot_rom_switch;
+
+        friend class Debugger;
+    };
+}

@@ -12,49 +12,58 @@
 #include <memory>
 #include <functional>
 
-using should_close_callback_t = std::function<bool()>;
+namespace KRASKA {
 
-class KRASKAboy {
-public:
-    KRASKAboy(const std::vector<u8>& cartridge_data, Options& options,
+    using should_close_callback_t = std::function<bool()>;
+
+    class KRASKAboy {
+    public:
+        KRASKAboy(const std::vector<u8>& cartridge_data, Options& options,
             const std::vector<u8>& save_data = {});
+        //KRASKAboy(const KRASKAboy&) = delete;
+        //KRASKAboy& operator=(const KRASKAboy&) = delete;
+        //~KRASKAboy() = default;
 
-    void run(
-        const should_close_callback_t& _should_close_callback,
-        const vblank_callback_t& _vblank_callback
-    );
+        //KRASKAboy(const std::vector<u8>& cartridge_data, Options& options,
+        //    const std::vector<u8>& save_data = {});
 
-    void button_pressed(GbButton button);
-    void button_released(GbButton button);
+        void run(
+            const should_close_callback_t& _should_close_callback,
+            const vblank_callback_t& _vblank_callback
+        );
 
-    void debug_toggle_background();
-    void debug_toggle_sprites();
-    void debug_toggle_window();
+        void button_pressed(GbButton button);
+        void button_released(GbButton button);
 
-    auto get_cartridge_ram() const -> const std::vector<u8>&;
+        void debug_toggle_background();
+        void debug_toggle_sprites();
+        void debug_toggle_window();
 
-private:
-    void tick();
+        auto get_cartridge_ram() const -> const std::vector<u8>&;
 
-    std::shared_ptr<Cartridge> cartridge;
+    private:
+        void tick();
 
-    CPU cpu;
-    friend class CPU;
+        std::shared_ptr<Cartridge> cartridge;
 
-    Video video;
-    friend class Video;
+        CPU cpu;
+        friend class CPU;
 
-    MMU mmu;
-    friend class MMU;
+        Video video;
+        friend class Video;
 
-    Input input;
-    Serial serial;
-    Timer timer;
+        MMU mmu;
+        friend class MMU;
 
-    Debugger debugger;
-    friend class Debugger;
+        Input input;
+        Serial serial;
+        Timer timer;
 
-    uint elapsed_cycles = 0;
+        Debugger debugger;
+        friend class Debugger;
 
-    should_close_callback_t should_close_callback;
-};
+        uint elapsed_cycles = 0;
+
+        should_close_callback_t should_close_callback;
+    };
+}

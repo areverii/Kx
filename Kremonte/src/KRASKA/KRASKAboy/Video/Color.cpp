@@ -1,8 +1,10 @@
 #include "Color.h"
 #include "../Util/KRboy_Log.h"
 
-auto get_color(u8 pixel_value) -> GBColor {
-    switch (pixel_value) {
+namespace KRASKA {
+
+    auto get_color(u8 pixel_value) -> GBColor {
+        switch (pixel_value) {
         case 0:
             return GBColor::Color0;
         case 1:
@@ -13,5 +15,6 @@ auto get_color(u8 pixel_value) -> GBColor {
             return GBColor::Color3;
         default:
             fatal_error("Invalid color value: %d", pixel_value);
+        }
     }
 }

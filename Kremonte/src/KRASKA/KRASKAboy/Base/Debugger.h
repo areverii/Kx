@@ -6,83 +6,87 @@
 #include <string>
 #include <vector>
 
-class KRASKAboy;
-class CPU;
+namespace KRASKA {
 
-static const char* PROMPT = "> ";
+    class KRASKAboy;
+    class CPU;
 
-enum class CommandType {
-    Step,
-    Run,
+    static const char* PROMPT = "> ";
 
-    BreakAddr,
-    BreakValue,
+    enum class CommandType {
+        Step,
+        Run,
 
-    Registers,
-    Flags,
-    Memory,
-    MemoryCell,
-    Steps,
+        BreakAddr,
+        BreakValue,
 
-    Log,
+        Registers,
+        Flags,
+        Memory,
+        MemoryCell,
+        Steps,
 
-    Exit,
-    Help,
+        Log,
 
-    Unknown,
-};
+        Exit,
+        Help,
 
-using Args = std::vector<std::string>;
+        Unknown,
+    };
 
-struct Command {
-    CommandType type;
-    Args args;
-};
+    using Args = std::vector<std::string>;
 
-class Debugger {
-public:
-    Debugger(KRASKAboy& inGameboy, Options& inOptions);
+    struct Command {
+        CommandType type;
+        Args args;
+    };
 
-    void set_enabled(bool enabled);
-    void cycle();
+    class Debugger {
 
-private:
-    KRASKAboy& gameboy;
-    Options& options;
+    public:
+        Debugger(KRASKAboy& inGameboy, Options& inOptions);
 
-    Command last_command;
+        void set_enabled(bool enabled);
+        void cycle();
 
-    auto get_command()->Command;
+    private:
+        KRASKAboy& gameboy;
+        Options& options;
 
-    auto execute(const Command& command) -> bool;
+        Command last_command;
 
-    /* Commands */
-    auto command_step(Args args) -> bool;
+        auto get_command()->Command;
 
-    void command_registers(const Args& args);
-    void command_flags(const Args& args);
-    void command_memory(Args args);
-    void command_memory_cell(Args args);
+        auto execute(const Command& command) -> bool;
 
-    void command_breakaddr(Args args);
-    void command_breakvalue(Args args);
+        /* Commands */
+        auto command_step(Args args) -> bool;
 
-    static void command_log(Args args);
+        void command_registers(const Args& args);
+        void command_flags(const Args& args);
+        void command_memory(Args args);
+        void command_memory_cell(Args args);
 
-    void command_steps(const Args& args) const;
-    static void command_exit(const Args& args);
-    static void command_help(const Args& args);
+        void command_breakaddr(Args args);
+        void command_breakvalue(Args args);
 
-    auto parse(const std::string& input)->Command;
-    static auto parse_command(std::string cmd)->CommandType;
+        static void command_log(Args args);
 
-    bool enabled;
+        void command_steps(const Args& args) const;
+        static void command_exit(const Args& args);
+        static void command_help(const Args& args);
 
-    int steps = 0;
-    uint counter = 0;
+        auto parse(const std::string& input)->Command;
+        static auto parse_command(std::string cmd)->CommandType;
 
-    u16 breakpoint_addr = 0;
-    u16 breakpoint_value_addr = 0;
-    u8 breakpoint_value = 0;
-    bool debugger_enabled = true;
-};
+        bool enabled;
+
+        int steps = 0;
+        uint counter = 0;
+
+        u16 breakpoint_addr = 0;
+        u16 breakpoint_value_addr = 0;
+        u8 breakpoint_value = 0;
+        bool debugger_enabled = true;
+    };
+}

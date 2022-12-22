@@ -3,20 +3,23 @@
 #include "../Base/Definitions.h"
 #include "Register.h"
 
-class Address {
-public:
-    Address(u16 location);
-    explicit Address(const RegisterPair& from);
-    explicit Address(const WordRegister& from);
+namespace KRASKA {
 
-    auto value() const -> u16;
+    class Address {
+    public:
+        Address(u16 location);
+        explicit Address(const RegisterPair& from);
+        explicit Address(const WordRegister& from);
 
-    auto in_range(Address low, Address high) const -> bool;
+        auto value() const->u16;
 
-    auto operator==(u16 other) const -> bool;
-    auto operator+(uint other) const -> Address;
-    auto operator-(uint other) const -> Address;
+        auto in_range(Address low, Address high) const -> bool;
 
-private:
-    u16 addr = 0x0;
-};
+        auto operator==(u16 other) const -> bool;
+        auto operator+(uint other) const->Address;
+        auto operator-(uint other) const->Address;
+
+    private:
+        u16 addr = 0x0;
+    };
+}

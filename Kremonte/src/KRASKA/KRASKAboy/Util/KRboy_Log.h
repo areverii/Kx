@@ -18,52 +18,55 @@
 
 #include <string>
 
-enum class LogLevel {
-    Trace,
-    Debug,
-    Unimplemented,
-    Info,
-    Warning,
-    Error,
-};
+namespace KRASKA {
 
-class Logger {
-public:
-    Logger() = default;
+    enum class LogLevel {
+        Trace,
+        Debug,
+        Unimplemented,
+        Info,
+        Warning,
+        Error,
+    };
 
-    void log(LogLevel level, const char* fmt, ...);
-    void set_level(LogLevel level);
+    class Logger {
+    public:
+        Logger() = default;
 
-    void enable_tracing();
+        void log(LogLevel level, const char* fmt, ...);
+        void set_level(LogLevel level);
 
-private:
-    auto should_log(LogLevel level) const -> bool;
-    static auto level_color(LogLevel level) -> const char*;
+        void enable_tracing();
 
-    LogLevel current_level = LogLevel::Debug;
-    bool enabled = true;
-    bool tracing_enabled = false;
-};
+    private:
+        auto should_log(LogLevel level) const -> bool;
+        static auto level_color(LogLevel level) -> const char*;
 
-extern Logger global_logger;
-extern const char* COLOR_TRACE;
-extern const char* COLOR_DEBUG;
-extern const char* COLOR_UNIMPLEMENTED;
-extern const char* COLOR_INFO;
-extern const char* COLOR_WARNING;
-extern const char* COLOR_ERROR;
-extern const char* COLOR_RESET;
+        LogLevel current_level = LogLevel::Debug;
+        bool enabled = true;
+        bool tracing_enabled = false;
+    };
 
-#pragma clang diagnostic push
-#pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
+    extern Logger global_logger;
+    extern const char* COLOR_TRACE;
+    extern const char* COLOR_DEBUG;
+    extern const char* COLOR_UNIMPLEMENTED;
+    extern const char* COLOR_INFO;
+    extern const char* COLOR_WARNING;
+    extern const char* COLOR_ERROR;
+    extern const char* COLOR_RESET;
 
-#define log_trace(...) global_logger.log(LogLevel::Trace, ##__VA_ARGS__);
-#define log_debug(...) global_logger.log(LogLevel::Debug, ##__VA_ARGS__);
-#define log_unimplemented(...) global_logger.log(LogLevel::Unimplemented, ##__VA_ARGS__);
-#define log_info(...) global_logger.log(LogLevel::Info, ##__VA_ARGS__);
-#define log_warn(...) global_logger.log(LogLevel::Warning, ##__VA_ARGS__);
-#define log_error(...) global_logger.log(LogLevel::Error, ##__VA_ARGS__);
+    #pragma clang diagnostic push
+    #pragma clang diagnostic ignored "-Wgnu-zero-variadic-macro-arguments"
 
-#pragma clang diagnostic pop
+    #define log_trace(...) global_logger.log(LogLevel::Trace, ##__VA_ARGS__);
+    #define log_debug(...) global_logger.log(LogLevel::Debug, ##__VA_ARGS__);
+    #define log_unimplemented(...) global_logger.log(LogLevel::Unimplemented, ##__VA_ARGS__);
+    #define log_info(...) global_logger.log(LogLevel::Info, ##__VA_ARGS__);
+    #define log_warn(...) global_logger.log(LogLevel::Warning, ##__VA_ARGS__);
+    #define log_error(...) global_logger.log(LogLevel::Error, ##__VA_ARGS__);
 
-extern void log_set_level(LogLevel level);
+    #pragma clang diagnostic pop
+
+    extern void log_set_level(LogLevel level);
+}

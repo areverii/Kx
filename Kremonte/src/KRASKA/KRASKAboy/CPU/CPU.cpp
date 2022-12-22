@@ -6,107 +6,109 @@
 #include "../Util/bitwise.h"
 #include "../Util/KRboy_Log.h"
 
-using bitwise::compose_bytes;
+namespace KRASKA {
 
-CPU::CPU(KRASKAboy& inGb, Options& inOptions) :
-    gb(inGb),
-    options(inOptions),
-    af(a, f),
-    bc(b, c),
-    de(d, e),
-    hl(h, l)
-{
-}
+    using bitwise::compose_bytes;
 
-auto CPU::tick() -> Cycles {
-    handle_interrupts();
-
-    if (halted) { return 1; }
-
-    u16 opcode_pc = pc.value();
-    auto opcode = get_byte_from_pc();
-    auto cycles = execute_opcode(opcode, opcode_pc);
-    return cycles;
-}
-
-auto CPU::execute_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
-    branch_taken = false;
-
-    if (opcode == 0xCB) {
-        u8 cb_opcode = get_byte_from_pc();
-        return execute_cb_opcode(cb_opcode, opcode_pc);
+    CPU::CPU(KRASKAboy& inGb, Options& inOptions) :
+        gb(inGb),
+        options(inOptions),
+        af(a, f),
+        bc(b, c),
+        de(d, e),
+        hl(h, l)
+    {
     }
 
-    return execute_normal_opcode(opcode, opcode_pc);
-}
+    auto CPU::tick() -> Cycles {
+        handle_interrupts();
 
-void CPU::handle_interrupts() {
-    if (interrupts_enabled) {
-        u8 fired_interrupts = interrupt_flag.value() & interrupt_enabled.value();
+        if (halted) { return 1; }
 
-        if (!fired_interrupts) { return; }
-
-        halted = false;
-        stack_push(pc);
-
-        bool handled_interrupt = false;
-
-        handled_interrupt = handle_interrupt(0, interrupts::vblank, fired_interrupts);
-        if (handled_interrupt) { return; }
-
-        handled_interrupt = handle_interrupt(1, interrupts::lcdc_status, fired_interrupts);
-        if (handled_interrupt) { return; }
-
-        handled_interrupt = handle_interrupt(2, interrupts::timer, fired_interrupts);
-        if (handled_interrupt) { return; }
-
-        handled_interrupt = handle_interrupt(3, interrupts::serial, fired_interrupts);
-        if (handled_interrupt) { return; }
-
-        handled_interrupt = handle_interrupt(4, interrupts::joypad, fired_interrupts);
-        if (handled_interrupt) { return; }
+        u16 opcode_pc = pc.value();
+        auto opcode = get_byte_from_pc();
+        auto cycles = execute_opcode(opcode, opcode_pc);
+        return cycles;
     }
-}
 
-auto CPU::handle_interrupt(u8 interrupt_bit, u16 interrupt_vector, u8 fired_interrupts) -> bool {
-    using bitwise::check_bit;
+    auto CPU::execute_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
+        branch_taken = false;
 
-    if (!check_bit(fired_interrupts, interrupt_bit)) { return false; }
+        if (opcode == 0xCB) {
+            u8 cb_opcode = get_byte_from_pc();
+            return execute_cb_opcode(cb_opcode, opcode_pc);
+        }
 
-    interrupt_flag.set_bit_to(interrupt_bit, false);
-    pc.set(interrupt_vector);
-    interrupts_enabled = false;
-    return true;
-}
+        return execute_normal_opcode(opcode, opcode_pc);
+    }
 
-auto CPU::get_byte_from_pc() -> u8 {
-    u8 byte = gb.mmu.read(Address(pc));
-    pc.increment();
+    void CPU::handle_interrupts() {
+        if (interrupts_enabled) {
+            u8 fired_interrupts = interrupt_flag.value() & interrupt_enabled.value();
 
-    return byte;
-}
+            if (!fired_interrupts) { return; }
 
-auto CPU::get_signed_byte_from_pc() -> s8 {
-    u8 byte = get_byte_from_pc();
-    return static_cast<s8>(byte);
-}
+            halted = false;
+            stack_push(pc);
 
-auto CPU::get_word_from_pc() -> u16 {
-    u8 low_byte = get_byte_from_pc();
-    u8 high_byte = get_byte_from_pc();
+            bool handled_interrupt = false;
 
-    return compose_bytes(high_byte, low_byte);
-}
+            handled_interrupt = handle_interrupt(0, interrupts::vblank, fired_interrupts);
+            if (handled_interrupt) { return; }
 
-void CPU::set_flag_zero(bool set) { f.set_flag_zero(set); }
-void CPU::set_flag_subtract(bool set) { f.set_flag_subtract(set); }
-void CPU::set_flag_half_carry(bool set) { f.set_flag_half_carry(set); }
-void CPU::set_flag_carry(bool set) { f.set_flag_carry(set); }
+            handled_interrupt = handle_interrupt(1, interrupts::lcdc_status, fired_interrupts);
+            if (handled_interrupt) { return; }
 
-auto CPU::is_condition(Condition condition) -> bool {
-    bool should_branch;
+            handled_interrupt = handle_interrupt(2, interrupts::timer, fired_interrupts);
+            if (handled_interrupt) { return; }
 
-    switch (condition) {
+            handled_interrupt = handle_interrupt(3, interrupts::serial, fired_interrupts);
+            if (handled_interrupt) { return; }
+
+            handled_interrupt = handle_interrupt(4, interrupts::joypad, fired_interrupts);
+            if (handled_interrupt) { return; }
+        }
+    }
+
+    auto CPU::handle_interrupt(u8 interrupt_bit, u16 interrupt_vector, u8 fired_interrupts) -> bool {
+        using bitwise::check_bit;
+
+        if (!check_bit(fired_interrupts, interrupt_bit)) { return false; }
+
+        interrupt_flag.set_bit_to(interrupt_bit, false);
+        pc.set(interrupt_vector);
+        interrupts_enabled = false;
+        return true;
+    }
+
+    auto CPU::get_byte_from_pc() -> u8 {
+        u8 byte = gb.mmu.read(Address(pc));
+        pc.increment();
+
+        return byte;
+    }
+
+    auto CPU::get_signed_byte_from_pc() -> s8 {
+        u8 byte = get_byte_from_pc();
+        return static_cast<s8>(byte);
+    }
+
+    auto CPU::get_word_from_pc() -> u16 {
+        u8 low_byte = get_byte_from_pc();
+        u8 high_byte = get_byte_from_pc();
+
+        return compose_bytes(high_byte, low_byte);
+    }
+
+    void CPU::set_flag_zero(bool set) { f.set_flag_zero(set); }
+    void CPU::set_flag_subtract(bool set) { f.set_flag_subtract(set); }
+    void CPU::set_flag_half_carry(bool set) { f.set_flag_half_carry(set); }
+    void CPU::set_flag_carry(bool set) { f.set_flag_carry(set); }
+
+    auto CPU::is_condition(Condition condition) -> bool {
+        bool should_branch;
+
+        switch (condition) {
         case Condition::C:
             should_branch = f.flag_carry();
             break;
@@ -119,36 +121,36 @@ auto CPU::is_condition(Condition condition) -> bool {
         case Condition::NZ:
             should_branch = !f.flag_zero();
             break;
+        }
+
+        /* If the branch is taken, remember so that the correct processor cycles
+         * can be used */
+        branch_taken = should_branch;
+        return should_branch;
     }
 
-    /* If the branch is taken, remember so that the correct processor cycles
-     * can be used */
-    branch_taken = should_branch;
-    return should_branch;
-}
+    void CPU::stack_push(const WordValue& reg) {
+        sp.decrement();
+        gb.mmu.write(Address(sp), reg.high());
+        sp.decrement();
+        gb.mmu.write(Address(sp), reg.low());
+    }
 
-void CPU::stack_push(const WordValue& reg) {
-    sp.decrement();
-    gb.mmu.write(Address(sp), reg.high());
-    sp.decrement();
-    gb.mmu.write(Address(sp), reg.low());
-}
+    void CPU::stack_pop(WordValue& reg) {
+        u8 low_byte = gb.mmu.read(Address(sp));
+        sp.increment();
+        u8 high_byte = gb.mmu.read(Address(sp));
+        sp.increment();
 
-void CPU::stack_pop(WordValue& reg) {
-    u8 low_byte = gb.mmu.read(Address(sp));
-    sp.increment();
-    u8 high_byte = gb.mmu.read(Address(sp));
-    sp.increment();
+        u16 value = compose_bytes(high_byte, low_byte);
+        reg.set(value);
+    }
 
-    u16 value = compose_bytes(high_byte, low_byte);
-    reg.set(value);
-}
+    /* clang-format off */
+    auto CPU::execute_normal_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
+        log_trace("0x%04X: %s (0x%x)", opcode_pc, opcode_names[opcode].c_str(), opcode);
 
-/* clang-format off */
-auto CPU::execute_normal_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
-    log_trace("0x%04X: %s (0x%x)", opcode_pc, opcode_names[opcode].c_str(), opcode);
-
-    switch (opcode) {
+        switch (opcode) {
         case 0x00: opcode_00(); break; case 0x01: opcode_01(); break; case 0x02: opcode_02(); break; case 0x03: opcode_03(); break; case 0x04: opcode_04(); break; case 0x05: opcode_05(); break; case 0x06: opcode_06(); break; case 0x07: opcode_07(); break; case 0x08: opcode_08(); break; case 0x09: opcode_09(); break; case 0x0A: opcode_0A(); break; case 0x0B: opcode_0B(); break; case 0x0C: opcode_0C(); break; case 0x0D: opcode_0D(); break; case 0x0E: opcode_0E(); break; case 0x0F: opcode_0F(); break;
         case 0x10: opcode_10(); break; case 0x11: opcode_11(); break; case 0x12: opcode_12(); break; case 0x13: opcode_13(); break; case 0x14: opcode_14(); break; case 0x15: opcode_15(); break; case 0x16: opcode_16(); break; case 0x17: opcode_17(); break; case 0x18: opcode_18(); break; case 0x19: opcode_19(); break; case 0x1A: opcode_1A(); break; case 0x1B: opcode_1B(); break; case 0x1C: opcode_1C(); break; case 0x1D: opcode_1D(); break; case 0x1E: opcode_1E(); break; case 0x1F: opcode_1F(); break;
         case 0x20: opcode_20(); break; case 0x21: opcode_21(); break; case 0x22: opcode_22(); break; case 0x23: opcode_23(); break; case 0x24: opcode_24(); break; case 0x25: opcode_25(); break; case 0x26: opcode_26(); break; case 0x27: opcode_27(); break; case 0x28: opcode_28(); break; case 0x29: opcode_29(); break; case 0x2A: opcode_2A(); break; case 0x2B: opcode_2B(); break; case 0x2C: opcode_2C(); break; case 0x2D: opcode_2D(); break; case 0x2E: opcode_2E(); break; case 0x2F: opcode_2F(); break;
@@ -165,17 +167,17 @@ auto CPU::execute_normal_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
         case 0xD0: opcode_D0(); break; case 0xD1: opcode_D1(); break; case 0xD2: opcode_D2(); break; case 0xD3: opcode_D3(); break; case 0xD4: opcode_D4(); break; case 0xD5: opcode_D5(); break; case 0xD6: opcode_D6(); break; case 0xD7: opcode_D7(); break; case 0xD8: opcode_D8(); break; case 0xD9: opcode_D9(); break; case 0xDA: opcode_DA(); break; case 0xDB: opcode_DB(); break; case 0xDC: opcode_DC(); break; case 0xDD: opcode_DD(); break; case 0xDE: opcode_DE(); break; case 0xDF: opcode_DF(); break;
         case 0xE0: opcode_E0(); break; case 0xE1: opcode_E1(); break; case 0xE2: opcode_E2(); break; case 0xE3: opcode_E3(); break; case 0xE4: opcode_E4(); break; case 0xE5: opcode_E5(); break; case 0xE6: opcode_E6(); break; case 0xE7: opcode_E7(); break; case 0xE8: opcode_E8(); break; case 0xE9: opcode_E9(); break; case 0xEA: opcode_EA(); break; case 0xEB: opcode_EB(); break; case 0xEC: opcode_EC(); break; case 0xED: opcode_ED(); break; case 0xEE: opcode_EE(); break; case 0xEF: opcode_EF(); break;
         case 0xF0: opcode_F0(); break; case 0xF1: opcode_F1(); break; case 0xF2: opcode_F2(); break; case 0xF3: opcode_F3(); break; case 0xF4: opcode_F4(); break; case 0xF5: opcode_F5(); break; case 0xF6: opcode_F6(); break; case 0xF7: opcode_F7(); break; case 0xF8: opcode_F8(); break; case 0xF9: opcode_F9(); break; case 0xFA: opcode_FA(); break; case 0xFB: opcode_FB(); break; case 0xFC: opcode_FC(); break; case 0xFD: opcode_FD(); break; case 0xFE: opcode_FE(); break; case 0xFF: opcode_FF(); break;
+        }
+
+        return !branch_taken
+            ? opcode_cycles[opcode]
+            : opcode_cycles_branched[opcode];
     }
 
-    return !branch_taken
-        ? opcode_cycles[opcode]
-        : opcode_cycles_branched[opcode];
-}
+    auto CPU::execute_cb_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
+        log_trace("0x%04X: %s (CB 0x%x)", opcode_pc, opcode_cb_names[opcode].c_str(), opcode);
 
-auto CPU::execute_cb_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
-    log_trace("0x%04X: %s (CB 0x%x)", opcode_pc, opcode_cb_names[opcode].c_str(), opcode);
-
-    switch (opcode) {
+        switch (opcode) {
         case 0x00: opcode_CB_00(); break; case 0x01: opcode_CB_01(); break; case 0x02: opcode_CB_02(); break; case 0x03: opcode_CB_03(); break; case 0x04: opcode_CB_04(); break; case 0x05: opcode_CB_05(); break; case 0x06: opcode_CB_06(); break; case 0x07: opcode_CB_07(); break; case 0x08: opcode_CB_08(); break; case 0x09: opcode_CB_09(); break; case 0x0A: opcode_CB_0A(); break; case 0x0B: opcode_CB_0B(); break; case 0x0C: opcode_CB_0C(); break; case 0x0D: opcode_CB_0D(); break; case 0x0E: opcode_CB_0E(); break; case 0x0F: opcode_CB_0F(); break;
         case 0x10: opcode_CB_10(); break; case 0x11: opcode_CB_11(); break; case 0x12: opcode_CB_12(); break; case 0x13: opcode_CB_13(); break; case 0x14: opcode_CB_14(); break; case 0x15: opcode_CB_15(); break; case 0x16: opcode_CB_16(); break; case 0x17: opcode_CB_17(); break; case 0x18: opcode_CB_18(); break; case 0x19: opcode_CB_19(); break; case 0x1A: opcode_CB_1A(); break; case 0x1B: opcode_CB_1B(); break; case 0x1C: opcode_CB_1C(); break; case 0x1D: opcode_CB_1D(); break; case 0x1E: opcode_CB_1E(); break; case 0x1F: opcode_CB_1F(); break;
         case 0x20: opcode_CB_20(); break; case 0x21: opcode_CB_21(); break; case 0x22: opcode_CB_22(); break; case 0x23: opcode_CB_23(); break; case 0x24: opcode_CB_24(); break; case 0x25: opcode_CB_25(); break; case 0x26: opcode_CB_26(); break; case 0x27: opcode_CB_27(); break; case 0x28: opcode_CB_28(); break; case 0x29: opcode_CB_29(); break; case 0x2A: opcode_CB_2A(); break; case 0x2B: opcode_CB_2B(); break; case 0x2C: opcode_CB_2C(); break; case 0x2D: opcode_CB_2D(); break; case 0x2E: opcode_CB_2E(); break; case 0x2F: opcode_CB_2F(); break;
@@ -192,7 +194,8 @@ auto CPU::execute_cb_opcode(const u8 opcode, u16 opcode_pc) -> Cycles {
         case 0xD0: opcode_CB_D0(); break; case 0xD1: opcode_CB_D1(); break; case 0xD2: opcode_CB_D2(); break; case 0xD3: opcode_CB_D3(); break; case 0xD4: opcode_CB_D4(); break; case 0xD5: opcode_CB_D5(); break; case 0xD6: opcode_CB_D6(); break; case 0xD7: opcode_CB_D7(); break; case 0xD8: opcode_CB_D8(); break; case 0xD9: opcode_CB_D9(); break; case 0xDA: opcode_CB_DA(); break; case 0xDB: opcode_CB_DB(); break; case 0xDC: opcode_CB_DC(); break; case 0xDD: opcode_CB_DD(); break; case 0xDE: opcode_CB_DE(); break; case 0xDF: opcode_CB_DF(); break;
         case 0xE0: opcode_CB_E0(); break; case 0xE1: opcode_CB_E1(); break; case 0xE2: opcode_CB_E2(); break; case 0xE3: opcode_CB_E3(); break; case 0xE4: opcode_CB_E4(); break; case 0xE5: opcode_CB_E5(); break; case 0xE6: opcode_CB_E6(); break; case 0xE7: opcode_CB_E7(); break; case 0xE8: opcode_CB_E8(); break; case 0xE9: opcode_CB_E9(); break; case 0xEA: opcode_CB_EA(); break; case 0xEB: opcode_CB_EB(); break; case 0xEC: opcode_CB_EC(); break; case 0xED: opcode_CB_ED(); break; case 0xEE: opcode_CB_EE(); break; case 0xEF: opcode_CB_EF(); break;
         case 0xF0: opcode_CB_F0(); break; case 0xF1: opcode_CB_F1(); break; case 0xF2: opcode_CB_F2(); break; case 0xF3: opcode_CB_F3(); break; case 0xF4: opcode_CB_F4(); break; case 0xF5: opcode_CB_F5(); break; case 0xF6: opcode_CB_F6(); break; case 0xF7: opcode_CB_F7(); break; case 0xF8: opcode_CB_F8(); break; case 0xF9: opcode_CB_F9(); break; case 0xFA: opcode_CB_FA(); break; case 0xFB: opcode_CB_FB(); break; case 0xFC: opcode_CB_FC(); break; case 0xFD: opcode_CB_FD(); break; case 0xFE: opcode_CB_FE(); break; case 0xFF: opcode_CB_FF(); break;
-    }
+        }
 
-    return opcode_cycles_cb[opcode];
+        return opcode_cycles_cb[opcode];
+    }
 }

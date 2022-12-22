@@ -2,37 +2,40 @@
 
 #include "Definitions.h"
 
-enum class GbButton {
-    Up,
-    Down,
-    Left,
-    Right,
-    A,
-    B,
-    Select,
-    Start,
-};
+namespace KRASKA {
 
-class Input {
-public:
-    void button_pressed(GbButton button);
-    void button_released(GbButton button);
-    void write(u8 set);
+    enum class GbButton {
+        Up,
+        Down,
+        Left,
+        Right,
+        A,
+        B,
+        Select,
+        Start,
+    };
 
-    auto get_input() const -> u8;
+    class Input {
+    public:
+        void button_pressed(GbButton button);
+        void button_released(GbButton button);
+        void write(u8 set);
 
-private:
-    void set_button(GbButton button, bool set);
+        auto get_input() const->u8;
 
-    bool up = false;
-    bool down = false;
-    bool left = false;
-    bool right = false;
-    bool a = false;
-    bool b = false;
-    bool select = false;
-    bool start = false;
+    private:
+        void set_button(GbButton button, bool set);
 
-    bool button_switch = false;
-    bool direction_switch = false;
-};
+        bool up = false;
+        bool down = false;
+        bool left = false;
+        bool right = false;
+        bool a = false;
+        bool b = false;
+        bool select = false;
+        bool start = false;
+
+        bool button_switch = false;
+        bool direction_switch = false;
+    };
+}

@@ -12,107 +12,110 @@
 #include <memory>
 #include <functional>
 
-class KRASKAboy;
+namespace KRASKA {
 
-using vblank_callback_t = std::function<void(const FrameBuffer&)>;
+    class KRASKAboy;
 
-enum class VideoMode {
-    ACCESS_OAM,
-    ACCESS_VRAM,
-    HBLANK,
-    VBLANK,
-};
+    using vblank_callback_t = std::function<void(const FrameBuffer&)>;
 
-struct TileInfo {
-    u8 line;
-    std::vector<u8> pixels;
-};
+    enum class VideoMode {
+        ACCESS_OAM,
+        ACCESS_VRAM,
+        HBLANK,
+        VBLANK,
+    };
 
-class Video {
-public:
-    Video(KRASKAboy& inGb, Options& inOptions);
+    struct TileInfo {
+        u8 line;
+        std::vector<u8> pixels;
+    };
 
-    void tick(Cycles cycles);
-    void register_vblank_callback(const vblank_callback_t& _vblank_callback);
+    class Video {
+    public:
+        Video(KRASKAboy& inGb, Options& inOptions);
 
-    u8 read(const Address& address);
-    void write(const Address& address, u8 byte);
+        void tick(Cycles cycles);
+        void register_vblank_callback(const vblank_callback_t& _vblank_callback);
 
-    u8 control_byte;
+        u8 read(const Address& address);
+        void write(const Address& address, u8 byte);
 
-    ByteRegister lcd_control;
-    ByteRegister lcd_status;
+        u8 control_byte;
 
-    ByteRegister scroll_y;
-    ByteRegister scroll_x;
+        ByteRegister lcd_control;
+        ByteRegister lcd_status;
 
-    /* LCDC Y-coordinate */
-    ByteRegister line; /* Line y-position: register LY */
-    ByteRegister ly_compare;
+        ByteRegister scroll_y;
+        ByteRegister scroll_x;
 
-    ByteRegister window_y;
-    ByteRegister window_x; /* Note: x - 7 */
+        /* LCDC Y-coordinate */
+        ByteRegister line; /* Line y-position: register LY */
+        ByteRegister ly_compare;
 
-    ByteRegister bg_palette;
-    ByteRegister sprite_palette_0; /* OBP0 */
-    ByteRegister sprite_palette_1; /* OBP1 */
+        ByteRegister window_y;
+        ByteRegister window_x; /* Note: x - 7 */
 
-    /* TODO: LCD Color Palettes (CGB) */
-    /* TODO: LCD VRAM Bank (CGB) */
+        ByteRegister bg_palette;
+        ByteRegister sprite_palette_0; /* OBP0 */
+        ByteRegister sprite_palette_1; /* OBP1 */
 
-    ByteRegister dma_transfer; /* DMA */
+        /* TODO: LCD Color Palettes (CGB) */
+        /* TODO: LCD VRAM Bank (CGB) */
 
-    bool debug_disable_background = false;
-    bool debug_disable_sprites = false;
-    bool debug_disable_window = false;
+        ByteRegister dma_transfer; /* DMA */
 
-private:
-    void write_scanline(u8 current_line);
-    void write_sprites();
-    void draw();
-    void draw_bg_line(uint current_line);
-    void draw_window_line(uint current_line);
-    void draw_sprite(uint sprite_n);
-    static auto get_pixel_from_line(u8 byte1, u8 byte2, u8 pixel_index) -> GBColor;
+        bool debug_disable_background = false;
+        bool debug_disable_sprites = false;
+        bool debug_disable_window = false;
 
-    static auto is_on_screen(u8 x, u8 y) -> bool;
-    static auto is_on_screen_x(u8 x) -> bool;
-    static auto is_on_screen_y(u8 y) -> bool;
+    private:
+        void write_scanline(u8 current_line);
+        void write_sprites();
+        void draw();
+        void draw_bg_line(uint current_line);
+        void draw_window_line(uint current_line);
+        void draw_sprite(uint sprite_n);
+        static auto get_pixel_from_line(u8 byte1, u8 byte2, u8 pixel_index)->GBColor;
 
-    auto display_enabled() const -> bool;
-    auto window_tile_map() const -> bool;
-    auto window_enabled() const -> bool;
-    auto bg_window_tile_data() const -> bool;
-    auto bg_tile_map_display() const -> bool;
-    auto sprite_size() const -> bool;
-    auto sprites_enabled() const -> bool;
-    auto bg_enabled() const -> bool;
+        static auto is_on_screen(u8 x, u8 y) -> bool;
+        static auto is_on_screen_x(u8 x) -> bool;
+        static auto is_on_screen_y(u8 y) -> bool;
 
-    auto get_tile_info(Address tile_set_location, u8 tile_id, u8 tile_line) const -> TileInfo;
+        auto display_enabled() const -> bool;
+        auto window_tile_map() const -> bool;
+        auto window_enabled() const -> bool;
+        auto bg_window_tile_data() const -> bool;
+        auto bg_tile_map_display() const -> bool;
+        auto sprite_size() const -> bool;
+        auto sprites_enabled() const -> bool;
+        auto bg_enabled() const -> bool;
 
-    static auto get_real_color(u8 pixel_value) -> Color;
-    static auto load_palette(ByteRegister& palette_register) -> Palette;
-    static auto get_color_from_palette(GBColor color, const Palette& palette) -> Color;
+        auto get_tile_info(Address tile_set_location, u8 tile_id, u8 tile_line) const->TileInfo;
 
-    KRASKAboy& gb;
+        static auto get_real_color(u8 pixel_value)->Color;
+        static auto load_palette(ByteRegister& palette_register)->Palette;
+        static auto get_color_from_palette(GBColor color, const Palette& palette)->Color;
 
-    FrameBuffer buffer;
-    FrameBuffer background_map;
+        KRASKAboy& gb;
 
-    std::vector<u8> video_ram;
+        FrameBuffer buffer;
+        FrameBuffer background_map;
 
-    VideoMode current_mode = VideoMode::ACCESS_OAM;
-    uint cycle_counter = 0;
+        std::vector<u8> video_ram;
 
-    vblank_callback_t vblank_callback;
-};
+        VideoMode current_mode = VideoMode::ACCESS_OAM;
+        uint cycle_counter = 0;
 
-const uint CLOCKS_PER_HBLANK = 204; /* Mode 0 */
-const uint CLOCKS_PER_SCANLINE_OAM = 80; /* Mode 2 */
-const uint CLOCKS_PER_SCANLINE_VRAM = 172; /* Mode 3 */
-const uint CLOCKS_PER_SCANLINE =
-    (CLOCKS_PER_SCANLINE_OAM + CLOCKS_PER_SCANLINE_VRAM + CLOCKS_PER_HBLANK);
+        vblank_callback_t vblank_callback;
+    };
 
-const uint CLOCKS_PER_VBLANK = 4560; /* Mode 1 */
-const uint SCANLINES_PER_FRAME = 144;
-const uint CLOCKS_PER_FRAME = (CLOCKS_PER_SCANLINE * SCANLINES_PER_FRAME) + CLOCKS_PER_VBLANK;
+    const uint CLOCKS_PER_HBLANK = 204; /* Mode 0 */
+    const uint CLOCKS_PER_SCANLINE_OAM = 80; /* Mode 2 */
+    const uint CLOCKS_PER_SCANLINE_VRAM = 172; /* Mode 3 */
+    const uint CLOCKS_PER_SCANLINE =
+        (CLOCKS_PER_SCANLINE_OAM + CLOCKS_PER_SCANLINE_VRAM + CLOCKS_PER_HBLANK);
+
+    const uint CLOCKS_PER_VBLANK = 4560; /* Mode 1 */
+    const uint SCANLINES_PER_FRAME = 144;
+    const uint CLOCKS_PER_FRAME = (CLOCKS_PER_SCANLINE * SCANLINES_PER_FRAME) + CLOCKS_PER_VBLANK;
+}

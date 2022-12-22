@@ -1,7 +1,12 @@
 #pragma once
 
 #include "Kremonte/krpch.h"
-//#include "Kremonte/src/KRASKA/Weavinglimb/Heartdrive.h"
+
+#include "../KRASKAboy/Base/KRASKAboy_prelude.h"
+
+#include "../KRASKAboy/Base/Options.h"
+#include <vector>
+#include "Kremonte/src/KRASKA/Puppet/Weavinglimb/Heartridge.h"
 //#include "Tryte.h"
 
 namespace Kremonte {
@@ -18,20 +23,26 @@ namespace Kremonte {
 		/* Frontend enum used to define a puppet's state in the world (does not denote
 		* any backend state)
 		*/
-		typedef enum { INCOMPLETE = 0, PUPPET_STANDBY = 1, PUPPET_RUNNING = 2 } PuppetState;
+		typedef enum { INCOMPLETE = 0, STANDBY = 1, COMPILING = 2, LOADED = 3, RUNNING = 4 } PuppetState;
 
-		Puppet();	
-
-		//KRASKAMachine::KRASKAMachine(const K_MachineState machineState) : machineState(machineState) { }
-		//KRASKAMachine(K_MachineState machineState) {
-
-		//}
-		//KRASKAmachine();
-
-
+		Puppet();
+		void loadHeartridge(int argc, char* kb_args[]);
+		void run();
 		void testCMYK();
 
-	protected:
+		static void draw(const KRASKA::FrameBuffer& buffer) {
+		}
+
+		static bool is_closed() {
+			return false;
+		}
+
+	private:
 		PuppetState pstate = INCOMPLETE;
+		
+		std::unique_ptr<KRASKA::Heartridge> _heartridge;
+		//friend class KRASKA::Heartridge;
+
+		std::unique_ptr<KRASKA::KRASKAboy> _kraskaboy;
 	};
 }

@@ -5,4 +5,8 @@
 
 #include "../Base/Definitions.h"
 
-auto read_bytes(const std::string& filename) -> std::vector<u8>;
+namespace KRASKA {
+
+	auto read_bytes(const std::string& filename)->std::vector<u8>;
+
+}

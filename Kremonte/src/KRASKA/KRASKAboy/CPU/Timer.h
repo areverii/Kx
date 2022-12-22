@@ -3,23 +3,26 @@
 #include "../Base/Definitions.h"
 #include "Register.h"
 
-class Timer {
-public:
-    void tick(uint cycles);
+namespace KRASKA {
 
-    auto get_divider() const -> u8;
-    auto get_timer() const -> u8;
-    auto get_timer_modulo() const -> u8;
-    auto get_timer_control() const -> u8;
+    class Timer {
+    public:
+        void tick(uint cycles);
 
-    void reset_divider();
-    void set_timer_modulo(u8 value);
-    void set_timer_control(u8 value);
+        auto get_divider() const->u8;
+        auto get_timer() const->u8;
+        auto get_timer_modulo() const->u8;
+        auto get_timer_control() const->u8;
 
-private:
-    ByteRegister divider;
-    ByteRegister timer_counter;
+        void reset_divider();
+        void set_timer_modulo(u8 value);
+        void set_timer_control(u8 value);
 
-    ByteRegister timer_modulo;
-    ByteRegister timer_control;
-};
+    private:
+        ByteRegister divider;
+        ByteRegister timer_counter;
+
+        ByteRegister timer_modulo;
+        ByteRegister timer_control;
+    };
+}

@@ -12,6 +12,13 @@
 #include <memory>
 #include <functional>
 
+#include "Color.h"
+#include "../../Puppet/KRASKAboy.h"
+#include "../CPU/CPU.h"
+
+#include "../Util/bitwise.h"
+#include "../Util/KRboy_Log.h"
+
 namespace KRASKA {
 
     class KRASKAboy;

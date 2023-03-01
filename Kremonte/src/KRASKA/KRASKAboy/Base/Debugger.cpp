@@ -1,6 +1,6 @@
 #include "Debugger.h"
 
-#include "KRASKAboy.h"
+#include "../../Puppet/KRASKAboy.h"
 #include "../CPU/CPU.h"
 #include "../Util/KRboy_Log.h"
 #include "../Util/KRboy_String_Utils.h"

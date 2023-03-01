@@ -9,8 +9,11 @@ cc_library(
             "//Kremonte/src/KRASKA/KRASKAboy/CPU:Address.h",
             "//Kremonte/src/KRASKA/KRASKAboy/CPU:Register.h",
             "//Kremonte/src/KRASKA/KRASKAboy/CPU:MMU.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:Opcode_Cycles.h",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:Opcode_Names.h",
             "//Kremonte/src/KRASKA/KRASKAboy/Cartridge:Cartridge.h",
             "//Kremonte/src/KRASKA/KRASKAboy/Cartridge:Cartridge_Info.h",
+            "//Kremonte/src/KRASKA/Puppet:KRASKAboy.h",
     ],
     srcs = [
             "Color.cpp",
@@ -30,4 +33,4 @@ cc_library(
     ],
     visibility = ["//visibility:public"],       
 )
-exports_files(["Video.h", "Framebuffer.h", "Tile.h"])
+exports_files(["Video.h", "Framebuffer.h", "Tile.h", "Color.h"])

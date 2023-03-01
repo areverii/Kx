@@ -4,6 +4,12 @@
 #include "Register.h"
 #include "../Base/Options.h"
 
+#include "../../Puppet/KRASKAboy.h"
+#include "Opcode_cycles.h"
+#include "Opcode_names.h"
+#include "../Util/bitwise.h"
+#include "../Util/KRboy_Log.h"
+
 namespace rst {
 const u16 rst1 = 0x00;
 const u16 rst2 = 0x08;

@@ -1,0 +1,15 @@
+cc_library(
+    name = "KRASKAboy",
+    srcs = [
+    ],
+    hdrs = [
+    ],
+    deps = [
+            "//Kremonte/src/KRASKA/KRASKAboy/Base:KRASKAboy-Base",
+            "//Kremonte/src/KRASKA/KRASKAboy/Cartridge:KRASKAboy-Cartridge",
+            "//Kremonte/src/KRASKA/KRASKAboy/CPU:KRASKAboy-CPU",
+            "//Kremonte/src/KRASKA/KRASKAboy/Util:KRASKAboy-Util",
+            "//Kremonte/src/KRASKA/KRASKAboy/Video:KRASKAboy-Video",
+    ],
+    visibility = ["//visibility:public"],
+)

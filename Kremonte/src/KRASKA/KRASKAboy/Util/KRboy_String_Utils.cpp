@@ -1,10 +1,5 @@
 #include "KRboy_String_Utils.h"
 
-#include <cstdio>
-#include <sstream>
-
-#include <cstdarg>
-
 using std::string;
 using std::vector;
 

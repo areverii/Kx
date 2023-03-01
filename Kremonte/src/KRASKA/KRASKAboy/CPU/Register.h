@@ -2,6 +2,8 @@
 
 #include "../Base/Definitions.h"
 
+#include "../Util/bitwise.h"
+
 namespace KRASKA {
 
     class ByteRegister : Noncopyable {

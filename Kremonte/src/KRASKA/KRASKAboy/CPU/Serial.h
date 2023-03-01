@@ -3,6 +3,11 @@
 #include "../Base/Definitions.h"
 #include "../Base/Options.h"
 
+#include "../Util/bitwise.h"
+#include "../Util/KRboy_Log.h"
+
+#include <cstdio>
+
 namespace KRASKA {
 
     class Serial {

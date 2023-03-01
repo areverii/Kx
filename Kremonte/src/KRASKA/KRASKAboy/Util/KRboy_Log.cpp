@@ -16,10 +16,6 @@
 
 #include "KRboy_Log.h"
 
-#include "KRboy_String_Utils.h"
-
-#include <cstdarg>
-
 namespace KRASKA {
 
     Logger global_logger;

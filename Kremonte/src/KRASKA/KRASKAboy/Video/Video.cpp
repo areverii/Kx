@@ -1,12 +1,5 @@
 #include "Video.h"
 
-#include "Color.h"
-#include "../Base/KRASKAboy.h"
-#include "../CPU/CPU.h"
-
-#include "../Util/bitwise.h"
-#include "../Util/KRboy_Log.h"
-
 namespace KRASKA {
 
     using bitwise::check_bit;

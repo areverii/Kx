@@ -1,10 +1,5 @@
 #include "Serial.h"
 
-#include "../Util/bitwise.h"
-#include "../Util/KRboy_Log.h"
-
-#include <cstdio>
-
 namespace KRASKA {
 
     auto Serial::read() const -> u8 { return data; }

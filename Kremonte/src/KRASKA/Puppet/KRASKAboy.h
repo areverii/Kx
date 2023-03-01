@@ -1,19 +1,31 @@
 #pragma once
 
-#include "Debugger.h"
-#include "Input.h"
-#include "../CPU/CPU.h"
-#include "../CPU/Serial.h"
-#include "../CPU/Timer.h"
-#include "../Video/Video.h"
-#include "Options.h"
-#include "../Util/KRboy_Log.h"
+/*#include "../KRASKAboy/Base/Debugger.h"
+#include "../KRASKAboy/Base/Input.h"
+#include "../KRASKAboy/CPU/CPU.h"
+#include "../KRASKAboy/CPU/Serial.h"
+#include "../KRASKAboy/CPU/Timer.h"
+#include "../KRASKAboy/Video/Video.h"
+#include "../KRASKAboy/Base/Options.h"
+#include "../KRASKAboy/Util/KRboy_Log.h"*/
+#include "../KRASKAboy/Base/KRASKAboy_comp.h"
 
 #include <memory>
 #include <functional>
 
 namespace KRASKA {
 
+    class CPU;
+    class Video;
+    class MMU;
+    class Input;
+    class Serial;
+    class Timer;
+    class Debugger;
+    class Cartridge;
+    class Options;
+    //class vblank_callback_t;
+    using vblank_callback_t = std::function<void(const FrameBuffer&)>;
     using should_close_callback_t = std::function<bool()>;
 
     class KRASKAboy {
@@ -46,20 +58,20 @@ namespace KRASKA {
 
         std::shared_ptr<Cartridge> cartridge;
 
-        CPU cpu;
+        CPU& cpu;
         friend class CPU;
 
-        Video video;
+        Video& video;
         friend class Video;
 
-        MMU mmu;
+        MMU& mmu;
         friend class MMU;
 
-        Input input;
-        Serial serial;
-        Timer timer;
+        Input& input;
+        Serial& serial;
+        Timer& timer;
 
-        Debugger debugger;
+        Debugger& debugger;
         friend class Debugger;
 
         uint elapsed_cycles = 0;

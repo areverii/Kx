@@ -10,13 +10,17 @@ cc_library(
     srcs = [
             "Heartdrive.cpp",
             "Heartridge.cpp",
+            "HeartridgeOptions.cpp",
     ],
     deps = [
             "@spdlog//:spdlog",
             "//Kremonte/src/Core:Kremonte-Core",
             "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
             "//Kremonte/src/KRASKA/KRASKAboy/Base:KRASKAboy-Base",
+            #"//Kremonte/src/KRASKA/KRASKAboy/Cartridge:KRASKAboy-Cartridge",
+            #"//Kremonte/src/KRASKA/KRASKAboy/CPU:KRASKAboy-CPU",
             "//Kremonte/src/KRASKA/KRASKAboy/Util:KRASKAboy-Util",
+            #"//Kremonte/src/KRASKA/KRASKAboy/Video:KRASKAboy-Video",
     ],
     visibility = ["//visibility:public"],       
 )

@@ -5,6 +5,7 @@ cc_library(
             "Cartridge_Info.h",
             "//Kremonte:krpch.h",
             "//Kremonte/src/KRASKA/KRASKAboy/Util:KRboy_Files.h",
+            "//Kremonte/src/KRASKA/Puppet:KRASKAboy.h",
     ],
     srcs = [
             "Cartridge.cpp",

@@ -6,6 +6,7 @@ cc_library(
             "KRboy_Log.h",
             "KRboy_String_Utils.h",
             "//Kremonte:krpch.h",
+            "//Kremonte/src/KRASKA/Puppet:KRASKAboy.h",
     ],
     srcs = [
             "KRboy_Files.cpp",

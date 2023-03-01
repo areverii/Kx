@@ -8,5 +8,9 @@ build:mingw_config --cpu=k8
 # build.
 build:mingw_config --host_crosstool_top=@bazel_tools//tools/cpp:toolchain
 
+build:mingw_config --compilation_mode=dbg
+
+#build:mingw_config --linkopt /debug
+
 # Enable experimental for MODULE.bazel to pull from common Bazel registry
 common --experimental_enable_bzlmod

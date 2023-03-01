@@ -4,9 +4,14 @@
 #include "../Base/Definitions.h"
 #include "../CPU/MMU.h"
 
+#include "Color.h"
+#include "../Util/bitwise.h"
+
 #include <array>
 
 namespace KRASKA {
+
+    class MMU;
 
     const uint TILES_PER_LINE = 32;
     const uint TILE_HEIGHT_PX = 8;

@@ -1,8 +1,5 @@
 #include "Tile.h"
 
-#include "Color.h"
-#include "../Util/bitwise.h"
-
 namespace KRASKA {
 
     using bitwise::bit_value;

@@ -1,0 +1,9 @@
+[23:37:24] [%] APPLICATION: Hello
+[23:37:25] [%] APPLICATION: Hello KREMONTE
+[23:37:25] [%] APPLICATION: CONSTRUCTING PUPPET
+[23:37:25] [%] APPLICATION: I got 1 arguments
+[23:37:25] [%] APPLICATION: filename is: 01-special.gb
+[23:37:25] [%] APPLICATION: about to construct kraskaboy
+[23:37:25] [%] APPLICATION: getting CPU
+[23:37:25] [%] APPLICATION: in kraskaboy constructor
+[23:37:25] [%] APPLICATION: after puppet?

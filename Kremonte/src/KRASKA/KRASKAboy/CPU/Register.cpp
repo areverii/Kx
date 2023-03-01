@@ -1,7 +1,5 @@
 #include "Register.h"
 
-#include "../Util/bitwise.h"
-
 namespace KRASKA {
 
     void ByteRegister::set(const u8 new_value) {

@@ -18,6 +18,10 @@
 
 #include <string>
 
+#include "KRboy_String_Utils.h"
+
+#include <cstdarg>
+
 namespace KRASKA {
 
     enum class LogLevel {

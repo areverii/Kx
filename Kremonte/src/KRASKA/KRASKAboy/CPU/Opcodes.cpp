@@ -1,9 +1,5 @@
 #include "CPU.h"
 
-#include "../Base/KRASKAboy.h"
-#include "../Util/bitwise.h"
-#include "../Util/KRboy_log.h"
-
 #include <cstdlib>
 
 namespace KRASKA {

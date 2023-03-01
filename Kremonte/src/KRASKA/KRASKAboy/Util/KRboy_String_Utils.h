@@ -3,6 +3,11 @@
 #include <string>
 #include <vector>
 
+#include <cstdio>
+#include <sstream>
+
+#include <cstdarg>
+
 namespace KRASKA {
 
 	auto str_format(const char* fmt, va_list args)->std::string;

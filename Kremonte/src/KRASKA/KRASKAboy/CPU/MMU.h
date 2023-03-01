@@ -4,6 +4,16 @@
 #include "../Base/Options.h"
 #include "../Cartridge/Cartridge.h"
 
+#include "../../Puppet/KRASKAboy.h"
+#include "../Base/Boot.h"
+#include "Serial.h"
+#include "../Base/Input.h"
+#include "Timer.h"
+#include "../Util/KRboy_Log.h"
+#include "../Util/bitwise.h"
+#include "CPU.h"
+#include "../Video/Video.h"
+
 #include <vector>
 #include <memory>
 

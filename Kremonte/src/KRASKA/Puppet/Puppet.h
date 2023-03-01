@@ -4,12 +4,12 @@
 
 #include "../KRASKAboy/Base/KRASKAboy_prelude.h"
 
-#include "../KRASKAboy/Base/Options.h"
-#include <vector>
+//#include "../KRASKAboy/Base/Options.h"
 #include "Kremonte/src/KRASKA/Puppet/Weavinglimb/Heartridge.h"
+
 //#include "Tryte.h"
 
-namespace Kremonte {
+namespace KRASKA {
 
 	/* Puppet
 	* Defines a puppet, the central interface object used to store all frontend
@@ -26,7 +26,8 @@ namespace Kremonte {
 		typedef enum { INCOMPLETE = 0, STANDBY = 1, COMPILING = 2, LOADED = 3, RUNNING = 4 } PuppetState;
 
 		Puppet();
-		void loadHeartridge(int argc, char* kb_args[]);
+		//void loadHeartridge(int argc, char* kb_args[]);
+		void loadHeartridge(std::string filename);
 		void run();
 		void testCMYK();
 
@@ -43,6 +44,6 @@ namespace Kremonte {
 		std::unique_ptr<KRASKA::Heartridge> _heartridge;
 		//friend class KRASKA::Heartridge;
 
-		std::unique_ptr<KRASKA::KRASKAboy> _kraskaboy;
+		//std::unique_ptr<KRASKA::KRASKAboy> _kraskaboy;
 	};
 }

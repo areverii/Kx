@@ -1,5 +1,4 @@
 #include "Color.h"
-#include "../Util/KRboy_Log.h"
 
 namespace KRASKA {
 

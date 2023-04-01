@@ -20,15 +20,16 @@ namespace KRASKA {
 	class Puppet {
 
 	public:
-		/* Frontend enum used to define a puppet's state in the world (does not denote
-		* any backend state)
-		*/
+
+		/* Frontend enum used to define a puppet's state in the client world
+		(does not denote any backend state) */
 		typedef enum { INCOMPLETE = 0, STANDBY = 1, COMPILING = 2, LOADED = 3, RUNNING = 4 } PuppetState;
 
 		Puppet();
-		//void loadHeartridge(int argc, char* kb_args[]);
+		void initialize(std::vector<std::string> arguments, std::string directory);
 		void loadHeartridge(std::string filename);
 		void run();
+
 		void testCMYK();
 
 		static void draw(const KRASKA::FrameBuffer& buffer) {
@@ -40,10 +41,8 @@ namespace KRASKA {
 
 	private:
 		PuppetState pstate = INCOMPLETE;
-		
-		std::unique_ptr<KRASKA::Heartridge> _heartridge;
-		//friend class KRASKA::Heartridge;
 
-		//std::unique_ptr<KRASKA::KRASKAboy> _kraskaboy;
+		std::unique_ptr<KRASKA::Heartridge> _heartridge;
+		std::unique_ptr<KRASKA::KRASKAboy> _kraskaboy;
 	};
 }

@@ -30,8 +30,9 @@ public:
 		KR_INFO("Hello KREMONTE");
 		//Kremonte::KRASKAmachine krmachine;
 		//krmachine.testCMYK();
-		KRASKA::Puppet puppet;
-		KR_INFO("after puppet?");
+		//KRASKA::Puppet puppet;
+		//KR_INFO("running");
+		//puppet.run();
 		//puppet.testCMYK();
 	}
 

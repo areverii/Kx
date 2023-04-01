@@ -1,8 +1,13 @@
-#third_party/glm:BUILD
+# third_party/glm/glm.BUILD
+load("@rules_cc//cc:defs.bzl", "cc_library")
 
-package(default_visibility = ["//visibility:public"])
-
-alias(
+cc_library(
     name = "glm",
-    actual = "@glm",
+    hdrs = glob([
+        "glm/**/*.hpp",
+        "glm/**/*.h",
+    ]),
+    includes = ["."],
+    textual_hdrs = glob(["glm/**/*.inl"]),
+    visibility = ["//visibility:public"],
 )

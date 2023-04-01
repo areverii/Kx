@@ -14,6 +14,7 @@ cc_library(
             "//Kremonte/src/KRASKA/KRASKAboy/Util:KRASKAboy-Util",
             "//Kremonte/src/KRASKA/KRASKAboy/Video:KRASKAboy-Video",
             "//Kremonte/src/KRASKA/Puppet:KRASKA-Puppet",
+            "//Kremonte/src/KRASKA/Gamut:KRASKA-Gamut"
     ],
     visibility = ["//visibility:public"],
 )

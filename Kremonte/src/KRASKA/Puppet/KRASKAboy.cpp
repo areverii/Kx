@@ -3,7 +3,6 @@
 namespace KRASKA {
 
     static CPU& getCPU(CPU cpu_in) {
-        KR_INFO("getting CPU");
         CPU& temp = cpu_in;
         return temp;
     }
@@ -49,7 +48,6 @@ namespace KRASKA {
         input(getInput(Input())),
         timer(getTimer(Timer()))
     {
-        KR_INFO("in kraskaboy constructor");
         /*Cartridge tempcartridge(get_cartridge(cartridge_data, save_data));
         cartridge = tempcartridge;
         CPU tempCPU(*this, options);
@@ -108,6 +106,7 @@ namespace KRASKA {
     }
 
     void KRASKAboy::tick() {
+        KR_INFO("tick");
         debugger.cycle();
 
         auto cycles = cpu.tick();

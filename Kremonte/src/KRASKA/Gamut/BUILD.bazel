@@ -1,0 +1,15 @@
+cc_library(
+    name = "KRASKA-Gamut",
+    srcs = [
+        "Gamut.cpp",
+        "Geometry.cpp"
+    ],
+    hdrs = [
+        "Gamut.h",
+        "Geometry.h"
+    ],
+    deps = [
+        "@glm//:glm",
+    ],
+    visibility = ["//visibility:public"],
+)

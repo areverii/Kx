@@ -13,6 +13,12 @@
 
 #include "Kremonte/src/KRASKA/Puppet/Puppet.h"
 
+// FRONTEND TESTING
+//#include "Kremonte/src/KRASKA/Gamut/Geometry.h"
+
+// DEBUG
+//#include "Kremonte/tracy/tracy.hpp"
+
 // ---Entry Point---------------------
 #include "Kremonte/src/Core/EntryPoint.h"
 // -----------------------------------

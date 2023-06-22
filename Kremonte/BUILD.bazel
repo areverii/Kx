@@ -3,7 +3,7 @@ cc_library(
     hdrs = [
             "Kremonte.h",
             "krpch.cpp",
-            "krpch.h"
+            "krpch.h",
     ],
     deps = [
             "//Kremonte/src/Core:Kremonte-Core",

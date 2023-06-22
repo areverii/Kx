@@ -34,6 +34,10 @@ public:
 		//KR_INFO("running");
 		//puppet.run();
 		//puppet.testCMYK();
+		
+		//KRASKA::Geometry geo;
+		//geo.Icosahedron(true);
+
 	}
 
 	//virtual void OnInit() override {

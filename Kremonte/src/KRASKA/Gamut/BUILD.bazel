@@ -2,14 +2,25 @@ cc_library(
     name = "KRASKA-Gamut",
     srcs = [
         "Gamut.cpp",
-        "Geometry.cpp"
+        "Geometry.cpp",
+        "Matrix.cpp",
     ],
     hdrs = [
+        "KRASKA.h",
+        "KRASKA_Types.h",
         "Gamut.h",
-        "Geometry.h"
+        "Geometry.h",
+        "Matrix.h",
+        "MatrixCell.h",
+        "//Kremonte:krpch.h",
+        "//Kremonte/src/Core:Log.h",
+        "//Kremonte/src/Core:Base.h",
+        "//Kremonte/src/Core:Assert.h",
     ],
     deps = [
+        "@spdlog//:spdlog",
         "@glm//:glm",
+        "//third_party/libter27:libter27",
     ],
     visibility = ["//visibility:public"],
 )

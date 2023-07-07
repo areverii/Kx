@@ -114,10 +114,10 @@ bter9_t bter9_sub( bter9_t a, bter9_t b );
 uter9_t uter9_addsr_c( uter9_t a, uter9_t b, unsigned int s );
 bter9_t bter9_addsr_c( bter9_t a, bter9_t b, unsigned int s );
 
-uter9_t uter9_carry;
+//uter9_t uter9_carry;
 uter9_t uter9_addc( uter9_t a, uter9_t b, uter9_t cin );
 
-bter9_t bter9_carry;
+//bter9_t bter9_carry;
 bter9_t bter9_addc( bter9_t a, bter9_t b, bter9_t cin );
 
 /* shift operations */
@@ -170,9 +170,9 @@ void void_bter9_div_up( bter9_t a, bter9_t b );
 
 /* multiply and divide: special */
 
-uter9_t uter9_prod_top, uter9_prod_low;
+//uter9_t uter9_prod_top, uter9_prod_low;
 void void_uter9_mul( uter9_t a, uter9_t b );
-bter9_t bter9_prod_top, bter9_prod_low;
+//bter9_t bter9_prod_top, bter9_prod_low;
 void void_bter9_mul( bter9_t a, bter9_t b );
 
 void void_uter9_divl( uter9_t ah, uter9_t al, uter9_t b );

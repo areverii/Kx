@@ -11,10 +11,11 @@ cc_library(
             "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
             "//Kremonte/src/KRASKA:KRASKA",
             "//third_party/glfw",
+            "//third_party/libter27",
             #"@rules_vulkan//vulkan:vulkan_cc_library",
             "@spdlog//:spdlog",
     ],
     visibility = ["//visibility:public"],
 )
 
-exports_files(["Kremonte.h", "krpch.h"])
+exports_files(["Kremonte.h", "krpch.h", "kraspch.h"])

@@ -13,6 +13,7 @@ cc_library(
         "Matrix.h",
         "MatrixCell.h",
         "//Kremonte:krpch.h",
+        "//Kremonte:kraspch.h",
         "//Kremonte/src/Core:Log.h",
         "//Kremonte/src/Core:Base.h",
         "//Kremonte/src/Core:Assert.h",

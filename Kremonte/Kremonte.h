@@ -15,6 +15,7 @@
 
 // FRONTEND TESTING
 //#include "Kremonte/src/KRASKA/Gamut/Geometry.h"
+#include "Kremonte/src/KRASKA/Gamut/Matrix.h"
 
 // DEBUG
 //#include "Kremonte/tracy/tracy.hpp"

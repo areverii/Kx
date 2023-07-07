@@ -12,6 +12,8 @@
 #include <unordered_map>
 #include <unordered_set>
 
+#include <stdint.h>
+
 #include "Kremonte/src/Core/Log.h"
 
 #ifdef _KR_PLATFORM_WINDOWS_

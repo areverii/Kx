@@ -1,8 +1,7 @@
 #pragma once
 
-#include "KRASKA.h"
+//#include "KRASKA.h"
 #include "Kremonte/krpch.h"
-#include "Kraska_Types.h"
 #include "MatrixCell.h"
 
 #include <list>
@@ -17,10 +16,15 @@ namespace KRASKA {
 	class Matrix {
 
 	public:
+
 		Matrix();
+		~Matrix();
+
+		bool Expand(MatrixCell* cell);
+
 
 	private:
-		std::vector<std::list<EmptyNode>> _matrix;
+		std::vector<std::list<const MatrixCell*>> _matrix;
 	};
 
 }

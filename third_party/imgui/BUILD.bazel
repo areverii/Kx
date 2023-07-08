@@ -1,0 +1,8 @@
+# library/imgui:BUILD
+
+package(default_visibility = ["//visibility:public"])
+
+alias(
+    name = "imgui",
+    actual = "@imgui",
+)

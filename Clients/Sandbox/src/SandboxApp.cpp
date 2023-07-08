@@ -39,10 +39,13 @@ public:
 		//geo.Icosahedron(true);
 
 		KRASKA::Matrix matrix;
+
+		/* Expand unit tests */
 		KR_ASSERT(matrix.Expand(new KRASKA::SwatchNode(KRASKA::swatch{ KRASKA::channel::Cx, BTER9_C_0 })));
 		KR_ASSERT(matrix.Expand(new KRASKA::SwatchNode(KRASKA::swatch{ KRASKA::channel::Yx, BTER9_C_2 })));
 		KR_ASSERT(matrix.Expand(new KRASKA::SwatchNode(KRASKA::swatch{ KRASKA::channel::Mx, BTER9_C_13 })));
 		KR_ASSERT(!matrix.Expand(new KRASKA::SwatchNode(KRASKA::swatch{ KRASKA::channel::Kx, BTER9_C_13 })));
+		KR_INFO("KRASKA: Matrix Unit Tests - EXPAND passed.");
 
 	}
 

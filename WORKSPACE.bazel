@@ -3,7 +3,8 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "new_git_repository")
 
-# Load Vulkan
+# Vulkan
+# License: MIT
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 git_repository(
@@ -16,7 +17,8 @@ load("@rules_vulkan//vulkan:repositories.bzl", "vulkan_repositories")
 
 vulkan_repositories()
 
-# Load GLM
+# GLM
+# License: MIT
 GLM_VERSION = "0.9.9.8"
 
 http_archive(
@@ -27,17 +29,8 @@ http_archive(
     urls = ["https://github.com/g-truc/glm/archive/{}.zip".format(GLM_VERSION)],
 )
 
-
-## Load GLFW
-
-#new_git_repository(
-#    name = "glfw",
-#    remote = "https://github.com/glfw/glfw.git",
-#    commit = "7482de6071d21db77a7236155da44c172a7f6c9e",
-#    build_file = "@//third_party/glfw:glfw.BUILD",
-#)
-
-# Load GLFW
+# GLFW
+# License: MIT
 GLFW_VERSION = "3.3.8"
 
 http_archive(
@@ -46,4 +39,15 @@ http_archive(
     sha256 = "8106e1a432305a8780b986c24922380df6a009a96b2ca590392cb0859062c8ff",
     strip_prefix = "glfw-{}".format(GLFW_VERSION),
     urls = ["https://github.com/glfw/glfw/archive/{}.zip".format(GLFW_VERSION)],
+)
+
+# imGUI
+# https://github.com/ocornut/imgui
+# License: MIT
+http_archive(
+    name = "imgui",
+    build_file = "@//third_party/imgui:imgui.BUILD",
+    sha256 = "115ee9e242af98a884302ac0f6ca3b2b26b1f10c660205f5e7ad9f1d1c96d269",
+    strip_prefix = "imgui-1.89.7",
+    url = "https://github.com/ocornut/imgui/archive/v1.89.7.tar.gz",
 )

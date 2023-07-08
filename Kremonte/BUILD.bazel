@@ -1,3 +1,5 @@
+# MAIN BUILD FILE FOR KREMONTE STATIC LIB
+
 cc_library(
     name = "Kremonte",
     hdrs = [
@@ -11,11 +13,15 @@ cc_library(
             "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
             "//Kremonte/src/KRASKA:KRASKA",
             "//third_party/glfw",
+            "//third_party/glm",
             "//third_party/libter27",
-            #"@rules_vulkan//vulkan:vulkan_cc_library",
+            "//third_party/imgui",
+            "@rules_vulkan//vulkan:vulkan_cc_library",
             "@spdlog//:spdlog",
     ],
     visibility = ["//visibility:public"],
 )
 
+# Kremonte.h contains all code exposed to clients
+# krpch.h and kraspch.h are precompiled headers
 exports_files(["Kremonte.h", "krpch.h", "kraspch.h"])

@@ -15,7 +15,7 @@ namespace Kremonte {
 		bool fullscreen = false;
 		bool vsync = true;
 		std::string workingDirectory;
-		//bool enableimgui = true;
+		bool enableimgui = true;
 	};
 
 	class Application {
@@ -25,6 +25,8 @@ namespace Kremonte {
 		virtual ~Application();
 
 		void Run();
+
+		virtual void OnInit() {}
 
 		void OnEvent(Event& e);
 

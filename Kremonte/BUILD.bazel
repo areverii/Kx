@@ -10,6 +10,7 @@ cc_library(
     deps = [
             "//Kremonte/src/Core:Kremonte-Core",
             "//Kremonte/src/Events:Kremonte-Events",
+            "//Kremonte/src/ImGUI:Kremonte-ImGUI",
             "//Kremonte/Platform/Windows:Kremonte-Platform-Windows",
             "//Kremonte/src/KRASKA:KRASKA",
             "//third_party/glfw",

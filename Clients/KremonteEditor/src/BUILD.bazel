@@ -1,0 +1,10 @@
+cc_binary(
+    name = "KremonteEditor",
+    srcs = [
+            "KremonteEditor.cpp",
+    ],
+    deps = [
+            "//Kremonte:Kremonte",
+    ],
+    linkstatic = True,
+)

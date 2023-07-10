@@ -27,7 +27,6 @@ cc_library(
     deps = [
            "@spdlog//:spdlog",
            "@glfw//:glfw",
-           #"//library/glfw"
     ],
     visibility = ["//visibility:public"],
 )

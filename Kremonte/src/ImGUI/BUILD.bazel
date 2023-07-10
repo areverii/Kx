@@ -1,0 +1,21 @@
+cc_library(
+    name = "Kremonte-ImGUI",
+    hdrs = [
+            "//Kremonte:krpch.h",
+            "ImGUILayer.h",
+    ],
+    srcs = [
+            "ImGUILayer.cpp",
+    ],
+    deps = [
+            "//Kremonte/src/Core:Kremonte-Core",
+            "//Kremonte/src/Events:Kremonte-Events",
+            "@spdlog//:spdlog",
+            "@imgui//:imgui",
+    ],
+    visibility = ["//visibility:public"],
+)
+
+exports_files([
+            "ImGUILayer.h",
+])

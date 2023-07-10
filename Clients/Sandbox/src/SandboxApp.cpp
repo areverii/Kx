@@ -49,9 +49,9 @@ public:
 
 	}
 
-	//virtual void OnInit() override {
+	virtual void OnInit() override {
 		
-	//}
+	}
 
 };
 

@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Kremonte/src/Core/Base.h"
-#include "Kremonte/src/Events/Event.h"
+#include "Core/Base.h"
+#include "Event/Event.h"
 
 namespace Kremonte {
 

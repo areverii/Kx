@@ -1,5 +1,5 @@
-#include "Kremonte/krpch.h"
-#include "Kremonte/src/Core/Log.h"
+#include "krpch.h"
+#include "Core/Log.h"
 
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/sinks/basic_file_sink.h"

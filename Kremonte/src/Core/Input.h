@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kremonte/src/Core/KeyCodes.h"
+#include "Core/KeyCodes.h"
 
 namespace Kremonte {
 

@@ -1,6 +1,10 @@
 # Directories
 .vs/
 
+# CMAKE
+out/
+
+
 # Bazel
 bazel-bin/
 bazel-kremonte_engine/

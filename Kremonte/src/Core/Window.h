@@ -1,9 +1,9 @@
 #pragma once
 
-#include "Kremonte/krpch.h"
+#include "krpch.h"
 
-#include "Kremonte/src/Core/Base.h"
-#include "Kremonte/src/Events/Event.h"
+#include "Core/Base.h"
+#include "Event/Event.h"
 
 namespace Kremonte {
 

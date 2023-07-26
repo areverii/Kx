@@ -1,7 +1,7 @@
-#include "Kremonte/krpch.h"
+#include "krpch.h"
 
-#include "Kremonte/src/Core/Base.h"
-#include "Kremonte/src/Core/Log.h"
+#include "Core/Base.h"
+#include "Core/Log.h"
 
 #define KR_BUILD_ID "v0.1a"
 

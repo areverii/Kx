@@ -1,6 +1,6 @@
-#include "Kremonte/krpch.h"
-#include "Kremonte/src/Core/Application.h"
-#include "Kremonte/src/Core/Log.h"
+#include "krpch.h"
+#include "Core/Application.h"
+#include "Core/Log.h"
 
 #include <Windows.h>
 
@@ -62,8 +62,12 @@ namespace Kremonte {
 		}
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& e) {
+	void Application::Quit() {
 		m_Running = false;
+	}
+
+	bool Application::OnWindowClose(WindowCloseEvent& e) {
+		Quit();
 		return true;
 	}
 

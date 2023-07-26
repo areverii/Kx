@@ -1,12 +1,12 @@
-#include "Kremonte/krpch.h"
-#include "ImGUILayer.h"
+#include "krpch.h"
+#include "ImGUI/ImGUILayer.h"
 
 
 namespace Kremonte {
 
 	ImGUILayer* ImGUILayer::CreateLayer() {
 
-		//switch on render API
+		//TODO: add switch statement on render API
 		return nullptr;
 	}
 

@@ -1,5 +1,5 @@
-#include "Kremonte/krpch.h"
-#include "Kremonte/src/Core/LayerStack.h"
+#include "krpch.h"
+#include "Core/LayerStack.h"
 
 namespace Kremonte {
 

@@ -1,16 +1,16 @@
 #pragma once
 
-#include "Kremonte/src/Core/Base.h"
-#include "Kremonte/src/Core/Window.h"
-#include "Kremonte/src/Core/LayerStack.h"
-#include "Kremonte/src/Events/Event.h"
-#include "Kremonte/src/Events/ApplicationEvent.h"
+#include "Core/Base.h"
+#include "Core/Window.h"
+#include "Core/LayerStack.h"
+#include "Event/Event.h"
+#include "Event/ApplicationEvent.h"
 
 
 namespace Kremonte {
 
 	struct ApplicationSpec {
-		std::string Name = "Kremonte Engine";
+		std::string Name = "Kremonte Application";
 		uint32_t windowWidth = 1600, windowHeight = 900;
 		bool fullscreen = false;
 		bool vsync = true;
@@ -25,6 +25,7 @@ namespace Kremonte {
 		virtual ~Application();
 
 		void Run();
+		void Quit();
 
 		virtual void OnInit() {}
 

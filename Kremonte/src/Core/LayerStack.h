@@ -1,7 +1,7 @@
 #pragma once
 
-#include "Kremonte/src/Core/Base.h"
-#include "Kremonte/src/Core/Layer.h"
+#include "Core/Base.h"
+#include "Core/Layer.h"
 
 #include <vector>
 

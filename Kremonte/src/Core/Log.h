@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kremonte/src/Core/Base.h"
+#include "Core/Base.h"
 
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h" // for logging custom types

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Kremonte/src/Core/Assert.h"
+#include "Core/Assert.h"
 #include <memory>
 
 namespace Kremonte {

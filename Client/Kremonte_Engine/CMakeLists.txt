@@ -35,4 +35,11 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
 
 target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
 
+# Add a custom command to copy the GLFW DLL to the binary directory
+add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E copy_if_different
+        ${GLFW_DLL_PATH}
+        $<TARGET_FILE_DIR:${PROJECT_NAME}>
+)
+
 #target_compile_definitions(VulkanMemoryAllocator PRIVATE VMA_STATS_STRING_ENABLED=0)

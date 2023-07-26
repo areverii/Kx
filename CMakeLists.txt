@@ -43,6 +43,11 @@ set(Vulkan_LIBRARIES
     "$ENV{VULKAN_SDK}/Bin32"
 )
 
+
+# Set the location of the GLFW DLL (change this path accordingly)
+# REFER TO README FOR INSTRUCTIONS ON THIS PART!
+set(GLFW_DLL_PATH "${DEPS}/glfw/build/src/Debug/glfw3d.dll")
+
 # Binaries
 add_subdirectory(Client/Kremonte_Engine)
 

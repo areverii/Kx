@@ -30,3 +30,11 @@ Intended to be a novel visual computation system. Planned as a game mechanic as 
 Change a git submodule:
 	1. git submodule set-url <deps/submodule> <url>
 	2. git submodule update --init --recursive --remote
+
+Build GLFW in Debug mode:
+	1. cd deps/glfw
+	2. run the following commands: 
+		cmake -S . -B build -D BUILD_SHARED_LIBS=ON
+		cmake --build build --config Debug
+	3. Find glfw3.dll and rename it to glfw3d.dll
+	4. Set the GLFW path in the root CMakeLists.txt to the location of this .dll

@@ -10,9 +10,6 @@
 [submodule "deps/spdlog"]
 	path = deps/spdlog
 	url = https://github.com/gabime/spdlog.git
-[submodule "deps/imgui"]
-	path = deps/imgui
-	url = https://github.com/areverii/imgui
 [submodule "deps/tracy"]
 	path = deps/tracy
 	url = https://github.com/wolfpld/tracy

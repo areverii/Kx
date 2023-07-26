@@ -4,7 +4,7 @@
 #include <string>
 #include <chrono>
 
-namespace KrGUI {
+namespace KxGUI {
 
 	class Timer
 	{

@@ -8,7 +8,7 @@
 #include <functional>
 
 //#include "vulkan/vulkan.h"
-#include "vulkan/vulkan.h"
+#include <vulkan/vulkan.h>
 #include <imgui.h>
 
 
@@ -16,11 +16,11 @@ void check_vk_result(VkResult err);
 
 struct GLFWwindow;
 
-namespace KrGUI {
+namespace KxGUI {
 
 	struct ApplicationSpecification
 	{
-		std::string Name = "KRGUI";
+		std::string Name = "KxGUI";
 		uint32_t Width = 1600;
 		uint32_t Height = 900;
 	};

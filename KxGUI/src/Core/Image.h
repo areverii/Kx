@@ -5,7 +5,7 @@
 #include <vulkan/vulkan.h>
 
 
-namespace KrGUI {
+namespace KxGUI {
 
 	enum class ImageFormat
 	{

@@ -32,6 +32,7 @@ set(INCLUDES
     ${DEPS}/imgui
     ${DEPS}/stb
     ${DEPS}/spdlog/include
+    ${Vulkan_INCLUDE_DIRS}
 )
 
 find_package(Vulkan REQUIRED)

@@ -10,7 +10,7 @@
 #define GLFW_INCLUDE_NONE
 #define GLFW_INCLUDE_VULKAN
 #include "GLFW/glfw3.h"
-#include "vulkan/vulkan.h"
+#include <vulkan/vulkan.h>
 #include "glm/glm.hpp"
 
 #include <stdio.h>          // printf, fprintf
@@ -56,7 +56,7 @@ static std::vector<std::vector<std::function<void()>>> s_ResourceFreeQueue;
 // and is always guaranteed to increase (eg. 0, 1, 2, 0, 1, 2)
 static uint32_t s_CurrentFrameIndex = 0;
 
-static Walnut::Application* s_Instance = nullptr;
+static KxGUI::Application* s_Instance = nullptr;
 
 void check_vk_result(VkResult err)
 {
@@ -383,7 +383,7 @@ static void glfw_error_callback(int error, const char* description)
 	fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-namespace Walnut {
+namespace KxGUI {
 
 	Application::Application(const ApplicationSpecification& specification)
 		: m_Specification(specification)

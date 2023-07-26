@@ -3,7 +3,7 @@
 #include <stdint.h>
 #include <iostream>
 
-namespace KrGUI {
+namespace KxGUI {
 
 	typedef enum class KeyCode : uint16_t
 	{

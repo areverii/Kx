@@ -16,7 +16,10 @@ option(ASSIMP_BUILD_TESTS "" OFF)
 add_subdirectory(${DEPS}/assimp)
 
 set( GLFW_BUILD_DOCS OFF CACHE BOOL  "GLFW lib only" )
+set( GLFW_BUILD_TESTS OFF CACHE BOOL  "GLFW lib only" )
+set( GLFW_BUILD_EXAMPLES OFF CACHE BOOL  "GLFW lib only" )
 set( GLFW_INSTALL OFF CACHE BOOL  "GLFW lib only" )
+set( GLFW_VULKAN_STATIC ON CACHE BOOL "GLFW lib only" )
 add_subdirectory(${DEPS}/glfw)
 
 add_subdirectory(${DEPS}/glm)
@@ -28,6 +31,17 @@ add_subdirectory(${DEPS}/spdlog)
 add_subdirectory(${DEPS}/tracy)
 
 add_subdirectory(${DEPS}/VulkanMemoryAllocator)
+
+set(Vulkan_INCLUDE_DIRS
+	$ENV{VULKAN_SDK}/Include
+)
+
+set(Vulkan_LIBRARIES
+	"$ENV{VULKAN_SDK}/Lib"
+    "$ENV{VULKAN_SDK}/Bin"
+    "$ENV{VULKAN_SDK}/Lib32"
+    "$ENV{VULKAN_SDK}/Bin32"
+)
 
 # Binaries
 add_subdirectory(Client/Kremonte_Engine)

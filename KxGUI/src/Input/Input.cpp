@@ -3,7 +3,7 @@
 
 #include <GLFW/glfw3.h>
 
-namespace KrGUI {
+namespace KxGUI {
 
 	bool Input::IsKeyDown(KeyCode keycode)
 	{

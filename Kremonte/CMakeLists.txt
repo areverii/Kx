@@ -61,9 +61,8 @@ set(INCLUDES
     ${DEPS}/VulkanMemoryAllocator/include
     ${DEPS}/tracy/public
     ${DEPS}/spdlog/include
+    ${Vulkan_INCLUDE_DIRS}
 )
-
-
 
 find_package(Vulkan REQUIRED)
 

@@ -19,3 +19,6 @@
 [submodule "deps/assimp"]
 	path = deps/assimp
 	url = https://github.com/assimp/assimp
+[submodule "deps/imgui"]
+	path = deps/imgui
+	url = https://github.com/areverii/imgui

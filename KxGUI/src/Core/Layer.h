@@ -1,6 +1,6 @@
 #pragma once
 
-namespace KrGUI {
+namespace KxGUI {
 
 	class Layer
 	{

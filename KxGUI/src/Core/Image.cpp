@@ -8,7 +8,7 @@
 #define STB_IMAGE_IMPLEMENTATION
 #include <stb_image.h>
 
-namespace KrGUI {
+namespace KxGUI {
 
 	namespace Utils {
 
@@ -35,7 +35,7 @@ namespace KrGUI {
 			return 0;
 		}
 		
-		static VkFormat WalnutFormatToVulkanFormat(ImageFormat format)
+		static VkFormat KxGUIFormatToVulkanFormat(ImageFormat format)
 		{
 			switch (format)
 			{
@@ -91,7 +91,7 @@ namespace KrGUI {
 
 		VkResult err;
 		
-		VkFormat vulkanFormat = Utils::WalnutFormatToVulkanFormat(m_Format);
+		VkFormat vulkanFormat = Utils::KxGUIFormatToVulkanFormat(m_Format);
 
 		// Create the Image
 		{

@@ -4,7 +4,7 @@
 
 #include <glm/glm.hpp>
 
-namespace KrGUI {
+namespace KxGUI {
 
 	class Random
 	{

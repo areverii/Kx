@@ -10,7 +10,8 @@ target_sources(${PROJECT_NAME} PRIVATE
 
 set(INCLUDES
     ${PROJECT_SOURCE_DIR}/src
-    sub::Kremonte/include
+    #sub::Kremonte/include
+    sub::KxGUI/include
 )
 
 target_include_directories (${PROJECT_NAME} PRIVATE
@@ -28,18 +29,22 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
     spdlog::spdlog_header_only
     #${Vulkan_LIBRARIES}
 
-    sub::Kremonte
+    sub::KxGUI
+    #sub::Kremonte
     #sub::KRASKA
-    #sub::KxGUI
 )
 
-target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    Tracy::TracyClient
+)
 
-# Add a custom command to copy the GLFW DLL to the binary directory
+# Custom command to copy the GLFW DLL to the binary directory
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_if_different
         ${GLFW_DLL_PATH}
         $<TARGET_FILE_DIR:${PROJECT_NAME}>
 )
+
+target_compile_options(${PROJECT_NAME} PUBLIC -D_KR_PLATFORM_WINDOWS_)
 
 #target_compile_definitions(VulkanMemoryAllocator PRIVATE VMA_STATS_STRING_ENABLED=0)

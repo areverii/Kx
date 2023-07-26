@@ -7,7 +7,6 @@
 #include <memory>
 #include <functional>
 
-//#include "vulkan/vulkan.h"
 #include <vulkan/vulkan.h>
 #include <imgui.h>
 

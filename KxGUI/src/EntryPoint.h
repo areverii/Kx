@@ -1,6 +1,8 @@
 #pragma once
 
-#ifdef KR_PLATFORM_WINDOWS
+#include "Core/Application.h"
+
+#ifdef _KR_PLATFORM_WINDOWS_
 
 extern KxGUI::Application* KxGUI::CreateApplication(int argc, char** argv);
 bool g_ApplicationRunning = true;
@@ -21,7 +23,7 @@ namespace KxGUI {
 
 }
 
-#ifdef KR_DIST
+#ifdef _KR_DIST_
 
 #include <Windows.h>
 
@@ -37,6 +39,6 @@ int main(int argc, char** argv)
 	return KxGUI::Main(argc, argv);
 }
 
-#endif // KR_DIST
+#endif // _KR_DIST_
 
-#endif // KR_PLATFORM_WINDOWS
+#endif // _KR_PLATFORM_WINDOWS_

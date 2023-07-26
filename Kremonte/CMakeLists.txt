@@ -61,10 +61,12 @@ set(INCLUDES
     ${DEPS}/VulkanMemoryAllocator/include
     ${DEPS}/tracy/public
     ${DEPS}/spdlog/include
-    ${Vulkan_INCLUDE_DIRS}
+    #${Vulkan_INCLUDE_DIRS}
 )
 
 find_package(Vulkan REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC
+    Vulkan::Vulkan)
 
 # Set up private includes for inter-library and public static library include
 target_include_directories (${PROJECT_NAME} PUBLIC ${INCLUDES})
@@ -74,6 +76,6 @@ target_precompile_headers(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src/krpc
 target_compile_options(${PROJECT_NAME} PUBLIC -D_KR_PLATFORM_WINDOWS_)
 
 #if(WIN32)
-    # Define KR_PLATFORM_WINDOWS macro
+    # Define _KR_PLATFORM_WINDOWS_ macro
     #add_compile_options(-D_KR_PLATFORM_WINDOWS_)
 #endif()

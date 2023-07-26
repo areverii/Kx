@@ -3,6 +3,7 @@
 project (Kremonte)
 
 add_library (${PROJECT_NAME} STATIC "")
+add_library(sub::Kremonte ALIAS ${PROJECT_NAME})
 
 target_sources(${PROJECT_NAME} PRIVATE
 
@@ -49,9 +50,6 @@ target_sources(${PROJECT_NAME} PRIVATE
     "src/Platform/Windows/WindowsWindow.h"
 )
 
-
-add_library(sub::Kremonte ALIAS ${PROJECT_NAME})
-
 set(INCLUDES
     ${PROJECT_SOURCE_DIR}/include
     ${PROJECT_SOURCE_DIR}/src
@@ -65,8 +63,14 @@ set(INCLUDES
     ${DEPS}/spdlog/include
 )
 
+
+
+find_package(Vulkan REQUIRED)
+
 # Set up private includes for inter-library and public static library include
 target_include_directories (${PROJECT_NAME} PUBLIC ${INCLUDES})
+
+target_precompile_headers(${PROJECT_NAME} PRIVATE ${PROJECT_SOURCE_DIR}/src/krpch.h)
 
 target_compile_options(${PROJECT_NAME} PUBLIC -D_KR_PLATFORM_WINDOWS_)
 

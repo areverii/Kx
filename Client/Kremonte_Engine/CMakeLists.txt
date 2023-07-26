@@ -15,12 +15,24 @@ set(INCLUDES
 
 target_include_directories (${PROJECT_NAME} PRIVATE
     ${INCLUDES}
+    ${Vulkan_INCLUDE_DIRS}
 )
 
 # Link with required libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE
+    assimp
     glfw
+    glm
+    imgui
+    VulkanMemoryAllocator
+    spdlog::spdlog_header_only
+    ${Vulkan_LIBRARIES}
+
     sub::Kremonte
     #sub::KRASKA
-    #sub::KxGUI
+    sub::KxGUI
 )
+
+target_link_libraries(${PROJECT_NAME} PUBLIC Tracy::TracyClient)
+
+#target_compile_definitions(VulkanMemoryAllocator PRIVATE VMA_STATS_STRING_ENABLED=0)
